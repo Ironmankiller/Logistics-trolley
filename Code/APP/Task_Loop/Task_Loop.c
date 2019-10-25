@@ -146,7 +146,7 @@ __INLINE static void Task_10ms(void)
 {
 
     Mecanum_Update(-Read_Encoder(8), -Read_Encoder(5), -Read_Encoder(3), Read_Encoder(4));
-    //Track_Read();
+
     //u1_printf("%d\r\n",Mecanum.state);
 
     switch (Mecanum.state)
@@ -167,7 +167,7 @@ __INLINE static void Task_10ms(void)
         place_control();
         break;
     case backToDeparture:
-        backToDeparture_control();
+        backToDeparture_control(); 
         break;
     case back:
         back_control();
@@ -187,10 +187,10 @@ __INLINE static void Task_20ms(void)
     Remote();
     //u1_printf("X:%d\tY:%d\r\n",Mecanum.X_Length,Mecanum.Y_Length);
     /* 发送传感器参数到上位机 */
-    //ANO_DT_Send_Senser(
-    //Mecanum.Target_A, Mecanum.Encoder_A, 0,
-	//0 ,0 , 0, 0,
-    //0, 0, 0);
+//    ANO_DT_Send_Senser(
+//    Mecanum.Target_A, Mecanum.Encoder_A, Mecanum.Target_B,
+//	Mecanum.Encoder_B ,Mecanum.Target_C , Mecanum.Encoder_C, Mecanum.Target_D,
+//    Mecanum.Encoder_D, 0, 0);
 
 //    ANO_DT_Send_Status(EulerAngle.Roll, EulerAngle.Pitch, EulerAngle.Yaw, 0, 0, 1);
 }
@@ -210,7 +210,9 @@ __INLINE static void Task_50ms(void)
     /* 显示 */
 //    Display_Mecanum();
     
-    HC165_Show();
+    //HC165_Show();
+      //  Track_Read();
+    //u2_printf("AB=%.2f\tBC=%.2f\tCD=%.2f\tDA=%.2f\r\n",Mecanum.side_AB,Mecanum.side_BC,Mecanum.side_CD,Mecanum.side_DA);
     
     /* 独立按键（调试用 比赛时慎用） */
     switch (KEY_Scan())

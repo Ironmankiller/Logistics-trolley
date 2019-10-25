@@ -34,10 +34,10 @@ pid pid_angle_speed;
 pid pid_speed;
 
 //依次为 Kp Ki Kd 输出上界 积分上限 死区 全速积分区 变速积分区 输出低通滤波系数 不完全微分系数 微分先行系数
-float pidmotorAspeedparm[11] = { 180.0f, 28.0f, 0.0f, 16000.0f, 40000.0f, 0.0f, 100.0f, 100.0f, 0.8f, 0.0f, 0.0f };
-float pidmotorBspeedparm[11] = { 180.0f, 28.0f, 0.0f, 16000.0f, 40000.0f, 0.0f, 100.0f, 100.0f, 0.8f, 0.0f, 0.0f };
-float pidmotorCspeedparm[11] = { 180.0f, 28.0f, 0.0f, 16000.0f, 40000.0f, 0.0f, 100.0f, 100.0f, 0.8f, 0.0f, 0.0f };
-float pidmotorDspeedparm[11] = { 180.0f, 28.0f, 0.0f, 16000.0f, 40000.0f, 0.0f, 100.0f, 100.0f, 0.8f, 0.0f, 0.0f };
+float pidmotorAspeedparm[11] = { 200.0f, 28.0f, 0.0f, 16000.0f, 40000.0f, 0.0f, 100.0f, 100.0f, 0.8f, 0.0f, 0.0f };
+float pidmotorBspeedparm[11] = { 200.0f, 28.0f, 0.0f, 16000.0f, 40000.0f, 0.0f, 100.0f, 100.0f, 0.8f, 0.0f, 0.0f };
+float pidmotorCspeedparm[11] = { 200.0f, 28.0f, 0.0f, 16000.0f, 40000.0f, 0.0f, 100.0f, 100.0f, 0.8f, 0.0f, 0.0f };
+float pidmotorDspeedparm[11] = { 200.0f, 28.0f, 0.0f, 16000.0f, 40000.0f, 0.0f, 100.0f, 100.0f, 0.8f, 0.0f, 0.0f };
 
 float pidmotorApositionparm[11] = { 120.0f, 12.0f, 0.0f, 16000.0f, 40000.0f, 0.0f, 10000.0f, 100.0f, 0.8f, 0.0f, 0.0f };
 float pidmotorBpositionparm[11] = { 120.0f, 12.0f, 0.0f, 16000.0f, 40000.0f, 0.0f, 10000.0f, 100.0f, 0.8f, 0.0f, 0.0f };

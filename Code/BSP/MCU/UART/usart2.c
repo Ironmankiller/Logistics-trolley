@@ -63,6 +63,16 @@ void USART2_IRQHandler(void)
                     //请在这里添加接收字符处理函数
                     //OpenMV_Data_Handle(USART2_RX_BUF,Uart_Len);
                     //完成字符串处理
+                    if(USART2_RX_BUF[0]=='0')
+                    {
+                        Mecanum.state = ready;
+                    } else if(USART2_RX_BUF[0]=='1')
+                    {
+                        Mecanum.state = back;
+                    } else if(USART2_RX_BUF[0]=='2')
+                    {
+                        Mecanum.state = goToDeparture;
+                    }
                     memset((void *)USART2_RX_BUF, 0, USART2_MAX_RECV_LEN);
                     USART2_RX_STA = 0;
                 }

@@ -33,28 +33,28 @@ Flag Init_flag = MY_TRUE; //初始化标志位
 u8 step=0;                //当前搬运第几个五块
 u8 order[3];              //搬运顺序
 float Target_Velocity = 0;//小车目标速度
-#define Z -1.5            //抵消小车的轴向旋转
+#define Z -1            //抵消小车的轴向旋转
 /************************************************************************
-Control
+Car Control
 ************************************************************************/
 static void grab_order_set(u8 *order);                         //设置抓取顺序
 static void put_order_set(u8 *order);                          //设置放置顺序
-static void stop_control(void);                                //小车停止
-static void goToX_control(int x,u8 *Flag_Run);                 //向X方向行驶,目标位置为x(从上向下看为向左行驶)
-static void goToY_control(int y,u8 *Flag_Run);                 //向Y方向行驶
+static void stop_control(u8 *Flag_Run);                                //小车停止
 static void goToXY_control(int x,int y,u8 *Flag_Run);          //XY方向
-static void calibrate_control(float x, float y, u8 *Flag_Run); //感光条校准
+static void calibrateXY_control(float x, float y, u8 *Flag_Run);//感光条校准
 static void grab_hand(int16_t *grab);                          //按照传入的参数控制机械臂抓取
 static void turn_hand(int16_t *turn);                          //按照传入的参数控制机械臂转向
 static void place_hand(int16_t * place);                       //控制机械臂放置    
 
 void ready_control(void){
+
+    static u8 Flag_Run=0;
     if(PS2_ON_Flag == MY_TRUE)
         PS2_Usart_Control();             //PS2手柄控制小车，如果已经初始化PS2则执行
-
-    Kinematic_Analysis(0,0,0);           //小车运动学分析
-    pid_setup_mecanum_speed();           //小车各轮子速度期望
-    pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);   //pid控制
+    stop_control(&Flag_Run);
+//    Kinematic_Analysis(0,0,Z);           //小车运动学分析
+//    pid_setup_mecanum_speed();           //小车各轮子速度期望
+//    pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);   //pid控制
 }
 
 void goToDeparture_control(void) {
@@ -62,19 +62,21 @@ void goToDeparture_control(void) {
     static u8 Flag_Run=0;         //标识当前运行阶段
  
     if(Flag_Run == 0) {
-        goToXY_control(114,40, &Flag_Run); 
+        goToXY_control(109,40, &Flag_Run); 
     } else if(Flag_Run == 1) {
-        goToXY_control(114,2,&Flag_Run);
+        goToXY_control(109,3,&Flag_Run);
     } else if(Flag_Run == 2) {
-        Track_Read();
-        calibrate_control(7.5f,6.0f,&Flag_Run);
+        stop_control(&Flag_Run);
     } else if(Flag_Run == 3){
+        calibrateXY_control(7.5f,6.0f,&Flag_Run);
+    } else if(Flag_Run == 4) {
+        stop_control(&Flag_Run);
+    } else if(Flag_Run == 5) {
         Init_flag = MY_TRUE;
         Mecanum.state = grab;
         Flag_Run = 0;
     }
 }
-
 
 void grab_control(void) {
     
@@ -89,6 +91,7 @@ void grab_control(void) {
     } else if(order[step] == CENTER){
         grab_hand(grab_center);
     }
+
     Mecanum.state = goToDestination;
     Init_flag = MY_TRUE;
 }
@@ -105,23 +108,22 @@ void goToDestination_control(void) {
         turn_hand(turn_destination);
     }
 
-    if(Flag_Run == 0){
-        goToXY_control(113,162,&Flag_Run);
-    } else if(Flag_Run == 1) {
+    if(Flag_Run == 0) {
         switch(order[step]){
             case RIGHT:
-                goToX_control(141,&Flag_Run);
+                goToXY_control(134,182,&Flag_Run);
                 break;
             case LEFT:
-                goToX_control(84,&Flag_Run);
+                goToXY_control(84,162,&Flag_Run);
                 break;
             case CENTER:
-                goToX_control(113,&Flag_Run);
+                goToXY_control(109,182,&Flag_Run);
                 break;
         }
+    } else if(Flag_Run == 1) {
+        stop_control(&Flag_Run);
     } else if(Flag_Run == 2) {
         Mecanum.state = place;
-        stop_control();
         Flag_Run = 0;
         step++;
     }
@@ -148,19 +150,17 @@ void backToDeparture_control(void) {
         Init_flag = MY_FALSE;
     }
 
-    if(Flag_Run == 0){
-        goToX_control(113,&Flag_Run);
+    if(Flag_Run == 0) {
+        goToXY_control(109,2,&Flag_Run);
     } else if(Flag_Run == 1) {
-        goToXY_control(113,2,&Flag_Run);
+        calibrateXY_control(7.5f,6.0f,&Flag_Run);
     } else if(Flag_Run == 2) {
-        Track_Read();
-        calibrate_control(7.5f,6.0f,&Flag_Run);
+        stop_control(&Flag_Run);
     } else if(Flag_Run == 3) {
         Mecanum.state = grab;
         Init_flag = MY_TRUE;
         Flag_Run = 0;
     }
-
 }
 
 void back_control(void) {
@@ -174,22 +174,29 @@ void back_control(void) {
     if(Flag_Run == 0) {
         goToXY_control(8,4,&Flag_Run);
     } else if(Flag_Run == 1) {
+        stop_control(&Flag_Run);
+    } else if(Flag_Run == 2) {
         Mecanum.state = ready;
-        stop_control();
         Flag_Run = 0;
     }
     
 }
 
-static void stop_control(void) {
-    Mecanum.Move_X = 0.0f;
-    Mecanum.Move_Y = 0.0f;
-    Mecanum.Move_Z = 0.0f;
-    MOTO_A_Set(0);
-    MOTO_B_Set(0);
-    MOTO_C_Set(0);
-    MOTO_D_Set(0);
-    Target_Velocity = 0;
+static void stop_control(u8 *Flag_Run) {
+    
+    static u8 counter=0;
+    if(Mecanum.Encoder_A==0&&Mecanum.Encoder_B==0&&Mecanum.Encoder_C==0&&Mecanum.Encoder_D==0) {
+        counter++;
+        if(counter==10){
+            counter = 0;
+            (*Flag_Run)++;
+        }
+    } else {
+        counter = 0;
+    }
+    Kinematic_Analysis(0,0,Z);           //小车运动学分析
+    pid_setup_mecanum_speed();           //小车各轮子速度期望
+    pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);   //pid控制
 }
 
 static void put_order_set(u8 *order) {
@@ -213,79 +220,6 @@ static void grab_order_set(u8 *order) {
         case crl: order[0] = CENTER; order[1] = RIGHT; order[2] = LEFT; break;
     }
 }
-static void goToX_control(int x,u8 *Flag_Run) {          //控制X方向运动
-    
-    float D,Dx,Dy;
-    
-    Dx = x - Mecanum.X_Length;
-    Dy = 0;
-    if(Dx<2 && Dx>-2) Dx = 0;             //若满足则认为到达该位置
-    D = sqrt((double)(Dx*Dx + Dy*Dy));    //算出目标位移
-    
-    if(D>60){
-        Target_Velocity=40;
-    }
-    else if(D>25){
-        Target_Velocity=30.0f/35.0f*D - 80.0/7.0;
-    }
-    else {
-        Target_Velocity=10; 
-    } 
-    
-    if(Target_Velocity>Mecanum.RC_Velocity) Mecanum.RC_Velocity+=0.6f;
-        else if(Target_Velocity<Mecanum.RC_Velocity) Mecanum.RC_Velocity-=0.5f;
-    
-    Mecanum.Move_X = Mecanum.RC_Velocity*Dx/D;
-    Mecanum.Move_Y = Mecanum.RC_Velocity*Dy/D;
-    Mecanum.Move_Z = 0.0f;
-    
-    if(Dx==0) { 
-        stop_control();  
-        (*Flag_Run)++;         //切换下一状态           
-        delay_ms(500);
-    }else{
-        Kinematic_Analysis(Mecanum.Move_X,Mecanum.Move_Y,Z);  //进行运动学分析
-        pid_setup_mecanum_speed();
-        pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);
-    }
-}
-    
-static void goToY_control(int y,u8 *Flag_Run) {   //控制Y方向运动
-    
-    float D,Dx,Dy;
-    
-    Dy = y-Mecanum.Y_Length;
-    Dx = 0;
-    if(Dy<2 && Dy>-2) Dy = 0;
-    D = sqrt((double)(Dx*Dx + Dy*Dy));
-    
-    if(D>60){
-        Target_Velocity=40;
-    }
-    else if(D>25){
-        Target_Velocity=30.0f/35.0f*D - 80.0/7.0;
-    }
-    else {
-        Target_Velocity=10; 
-    } 
-    
-    if(Target_Velocity>Mecanum.RC_Velocity) Mecanum.RC_Velocity+=0.6f;
-        else if(Target_Velocity<Mecanum.RC_Velocity) Mecanum.RC_Velocity-=0.5f;
-    
-    Mecanum.Move_X = Mecanum.RC_Velocity*Dx/D;
-    Mecanum.Move_Y = Mecanum.RC_Velocity*Dy/D;
-    Mecanum.Move_Z = 0.0f;
-    
-    if(Dy==0) {
-        stop_control();
-        (*Flag_Run)++;         //切换下一状态
-        delay_ms(500);
-    }else{
-        Kinematic_Analysis(Mecanum.Move_X,Mecanum.Move_Y,Z);  //进行运动学分析
-        pid_setup_mecanum_speed();
-        pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);
-    }
-}
 static void goToXY_control(int x,int y,u8 *Flag_Run) {
     
     float D,Dx,Dy;
@@ -303,56 +237,70 @@ static void goToXY_control(int x,int y,u8 *Flag_Run) {
         Target_Velocity=30.0f/35.0f*D - 80.0/7.0;
     }
     else {
-        Target_Velocity=10; 
+        Target_Velocity=5; 
     } 
     
-    if(Target_Velocity>Mecanum.RC_Velocity) Mecanum.RC_Velocity+=0.6f;
+    if(Target_Velocity>Mecanum.RC_Velocity) Mecanum.RC_Velocity+=0.3f;
         else if(Target_Velocity<Mecanum.RC_Velocity) Mecanum.RC_Velocity-=0.5f;
     
     Mecanum.Move_X = Mecanum.RC_Velocity*Dx/D;
     Mecanum.Move_Y = Mecanum.RC_Velocity*Dy/D;
-    Mecanum.Move_Z = 0.0f;
+    Mecanum.Move_Z = Z;
     
     if(Dy==0 && Dx==0) {
-        stop_control();
         (*Flag_Run)++;        
-        delay_ms(500);
-    }else{
-        Kinematic_Analysis(Mecanum.Move_X,Mecanum.Move_Y,Z);  //进行运动学分析
-        pid_setup_mecanum_speed();
-        pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);
+        Mecanum.Move_X = 0;
+        Mecanum.Move_Y = 0;
+        Mecanum.Move_Z = 0;
     }
+    Kinematic_Analysis(Mecanum.Move_X,Mecanum.Move_Y,Mecanum.Move_Z);  //进行运动学分析
+    pid_setup_mecanum_speed();
+    pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);
 }
 
-static void calibrate_control(float x, float y, u8 *Flag_Run) {
+static void calibrateXY_control(float x, float y, u8 *Flag_Run) {
     
-    float D,Dx,Dy,Dz;
-    Mecanum.Gyro_K=0;
-    Dx = Mecanum.side_BC - x;
-    Dy = (Mecanum.side_AB) - y;
-    Dz = 15.0f-(Mecanum.side_AB + Mecanum.side_CD);
-    D = sqrt((double)(Dx*Dx + Dy*Dy));
+    float Dx,Dy,Dz;
+    Mecanum.Gyro_K=0.00 ;                   //校正时允许绕z轴转动
+//    Dx = Mecanum.side_BC - x;
+//    Dy = (Mecanum.side_AB) - y;
+//    Dz = 15.0f-(Mecanum.side_AB + Mecanum.side_CD);
     
-    if((int)Mecanum.side_BC==0)
+    Track_Read();
+
+    Dx = Mecanum.side_BC + (15.0f-Mecanum.side_DA) -x*2;                              //x方向偏差
+    Dy = Mecanum.side_AB + (15.0f-Mecanum.side_CD) - y*2;                             //y方向偏差
+    
+    //D = sqrt((double)(Dx*Dx + Dy*Dy));
+    Dz =  (Mecanum.side_BC+Mecanum.side_DA) - (Mecanum.side_AB+Mecanum.side_CD);
+    
+    if((int)Mecanum.side_BC==0||(int)Mecanum.side_DA==0){
+        Dz =  15.0f - (Mecanum.side_AB+Mecanum.side_CD);                                  //z方向偏差
         Dx = 0;
-    if((int)Mecanum.side_AB==0)
+    }    
+    if((int)Mecanum.side_AB==0||(int)Mecanum.side_CD==0){
+        Dz =  (Mecanum.side_BC+Mecanum.side_DA) - 15.0f;                                  //z方向偏差
         Dy = 0;
-    
-    Mecanum.Move_Y = 4.0f*Dy/D;
-    Mecanum.Move_X = 4.0f*Dx/D;
-    Mecanum.Move_Z = Dz;
-    //u1_printf("AB=%.2f\tBC=%.2f\tMove_X=%.2f\tMove_Y=%.2f\tDx=%.2f\tDy=%.2f\r\n",Mecanum.side_AB,Mecanum.side_BC,Mecanum.Move_X,Mecanum.Move_Y,Dx,Dy);
-    if(Dy<0.3f && Dy>-0.3f && Dx<0.3f & Dx>-0.3f) { 
-            stop_control();
-            Mecanum.Gyro_K=0.0045;
-            (*Flag_Run)++;
-            delay_ms(500);
-    }else{
-        Kinematic_Analysis(Mecanum.Move_X,Mecanum.Move_Y,Mecanum.Move_Z);  //进行运动学分析
-        pid_setup_mecanum_speed();
-        pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);
     }
+    
+    
+    Mecanum.Move_Y = 0.5f*Dy;
+    Mecanum.Move_X = 0.5f*Dx;
+    Mecanum.Move_Z = 0.0f*Dz;
+    Dz = 0;
+    u2_printf("AB=%.2f\tBC=%.2f\tCD=%.2f\tDA=%.2f\tDx=%.2f\tDy=%.2f\r\n",Mecanum.side_AB,Mecanum.side_BC,Mecanum.side_CD,Mecanum.side_DA,Dx,Dy);
+    if(Dy<0.6f && Dy>-0.6f && Dx<0.6f && Dx>-0.6f && Dz>-0.6f && Dz<0.6f) { 
+        Mecanum.Gyro_K=0.0055;
+        (*Flag_Run)++;
+        Mecanum.Move_Y = 0;
+        Mecanum.Move_X = 0;
+        Mecanum.Move_Z = 0;
+    }
+    Kinematic_Analysis(Mecanum.Move_X,Mecanum.Move_Y,Mecanum.Move_Z);  //进行运动学分析
+    pid_setup_mecanum_speed();
+    pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);
 }
+
 
 static void grab_hand(int16_t *grab) {
     

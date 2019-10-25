@@ -21,7 +21,7 @@ void Mecanum_Param_Init(void)
     memset(&Mecanum, 0, sizeof(sMecanum_Typedef));
     Mecanum.state = ready;
     Mecanum.RC_Velocity = 15.0f;
-	Mecanum.Gyro_K=0.0045;
+	Mecanum.Gyro_K=0.0055;
     Mecanum.Destination_Order = lrc;
     Mecanum.Departure_Order = rlc;
     Init_flag = MY_TRUE;

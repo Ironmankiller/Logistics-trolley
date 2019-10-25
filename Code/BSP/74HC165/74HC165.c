@@ -31,7 +31,7 @@ void HC165_Init(void)
 
 void HC165_delay(void)
 {
-    delay_us(5);
+    delay_us(1);
 
 //    if (!HC165_FastMode)
 //    {
@@ -73,7 +73,7 @@ u16 HC165_Read_2Byte(void)
 //    HC165_delay();
 //    SHLD_H;
 //    delay_us(5);
-
+    HC165_delay();
     if (DATA_read)
     {
         ReceiveByte |= 0x0400;
@@ -86,6 +86,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x0800;
     }
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -94,6 +95,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x0100;
     }
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -102,6 +104,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x0200;
     }
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -110,6 +113,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x2000;
     }
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -118,6 +122,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x1000;
     }
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -126,6 +131,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x4000;
     }
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -135,7 +141,7 @@ u16 HC165_Read_2Byte(void)
         ReceiveByte |= 0x8000;
     }
     
-    
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -144,6 +150,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x0001;
     }
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -152,6 +159,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x0002;
     }
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -160,6 +168,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x0008;
     }
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -168,6 +177,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x0004;
     }
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -176,6 +186,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x0080;
     }
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -184,6 +195,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x0040;
     }
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -192,6 +204,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x0010;
     }
+    HC165_delay();
     HC165_CLK_L;
     HC165_delay();
     HC165_CLK_H;
@@ -200,6 +213,7 @@ u16 HC165_Read_2Byte(void)
     {
         ReceiveByte |= 0x0020;
     }
+    HC165_delay();
     
     return ReceiveByte;
 }
@@ -210,38 +224,15 @@ void HC165_Show(void){
     u16 temp1 = 0;
     u16 temp2 = 0;
     u16 temp3 = 0;
+    u16 temp4 = 0;
     u16 tempp = 0;
     SHLD_L;
     HC165_delay();
     SHLD_H;
     HC165_delay();
 
-    
-    HC165_CLK_L;
-    HC165_delay();
-    HC165_CLK_H;
-    HC165_delay();
-    temp = HC165_Read_2Byte();
-    HC165_CLK_L;
-    HC165_delay();
-    HC165_CLK_H;
-    HC165_delay();
-    temp1 = HC165_Read_2Byte();
-    HC165_CLK_L;
-    HC165_delay();
-    HC165_CLK_H;
-    HC165_delay();
-    temp2 = HC165_Read_2Byte();
-    HC165_CLK_L;
-    HC165_delay();
-    HC165_CLK_H;
-    HC165_delay();
-    temp3 = HC165_Read_2Byte();
-HC165_CLK_L;
-    HC165_delay();
-    HC165_CLK_H;
-    HC165_delay();
 
+    temp = HC165_Read_2Byte();
     for(int i=15;i>=0;i--){
         tempp = temp;
         tempp >>= i;
@@ -252,6 +243,11 @@ HC165_CLK_L;
             u1_printf("0");
         }
     }
+    HC165_CLK_L;
+    HC165_delay();
+    HC165_CLK_H;
+    HC165_delay();
+    temp1 = HC165_Read_2Byte();
     for(int i=15;i>=0;i--){
         tempp = temp1;
         tempp >>= i;
@@ -262,6 +258,12 @@ HC165_CLK_L;
             u1_printf("0");
         }
     }
+    
+    HC165_CLK_L;
+    HC165_delay();
+    HC165_CLK_H;
+    HC165_delay();
+    temp2 = HC165_Read_2Byte();
     for(int i=15;i>=0;i--){
         tempp = temp2;
         tempp >>= i;
@@ -272,6 +274,13 @@ HC165_CLK_L;
             u1_printf("0");
         }
     }
+    
+    
+    HC165_CLK_L;
+    HC165_delay();
+    HC165_CLK_H;
+    HC165_delay();
+    temp3 = HC165_Read_2Byte();
     for(int i=15;i>=0;i--){
         tempp = temp3;
         tempp >>= i;
@@ -282,5 +291,26 @@ HC165_CLK_L;
             u1_printf("0");
         }
     }
+    
+//    HC165_CLK_L;
+//    HC165_delay();
+//    HC165_CLK_H;
+//    HC165_delay();
+//    temp4 = HC165_Read_2Byte();
+//    for(int i=15;i>=0;i--){
+//        tempp = temp4;
+//        tempp >>= i;
+//        tempp &= 1;
+//        if(tempp == 1){
+//            u1_printf("1");
+//        }else{
+//            u1_printf("0");
+//        }
+//    }
+//    HC165_CLK_L;
+//    HC165_delay();
+//    HC165_CLK_H;
+//    HC165_delay();
+    
     u1_printf("\r\n");
 }

@@ -4,14 +4,14 @@
 
 
 
-int16_t grab_right[4] = {-35, 30, -10, 45};
-int16_t grab_left[4] = {30, 33, -10, 45};
-int16_t grab_center[4] = {0, 0, 0, 45};
+int16_t grab_right[4] = {-30, 10, -10, 45};
+int16_t grab_left[4] = {30, 10, -10, 45};
+int16_t grab_center[4] = {0, -3, 0, 45};
 
-int16_t turn_destination[3] = {-180, -60, -50};
-int16_t turn_departure[3] = {0, -60, -50};
+int16_t turn_destination[3] = {-180, -60, -35};
+int16_t turn_departure[3] = {0, -60, -35};
 
-int16_t place_processing[4] = {-180, 40, 20, 0};
+int16_t place_processing[4] = {-180, 25, 25, 0};
 int16_t place_finished[4] = {0, 0, 0, 0};
 
 pid pid_motorA_speed;

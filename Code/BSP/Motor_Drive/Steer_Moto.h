@@ -4,10 +4,10 @@
 void setmotor_pwm(unsigned short num,unsigned short pwm,unsigned short time);
 
 //四个关节舵机中值
-#define arm1_offset     1880
-#define arm2_offset     1500
-#define arm3_offset     1500
-#define arm4_offset     1750
+#define arm1_offset     1900
+#define arm2_offset     1600
+#define arm3_offset     1180
+#define arm4_offset     1400
 
 //舵机角度控制
 #define arm1(degree)    setmotor_pwm(1, (float)(degree)*2000.0f/270.0f + arm1_offset, 100)

@@ -224,10 +224,18 @@ __INLINE static void Task_50ms(void)
         LED_SWITCH(LED_2);
         break;
     case 4:
-        Mecanum.state = goToDeparture;
+        //Mecanum.state = goToDeparture;
         LED_SWITCH(LED_3);
         break;
     case 5:
+        Mecanum.state = goToDeparture;
+        arm1(0);//0 35 0
+        delay_ms(50);
+        arm2(-70);//-10 10 -60
+        delay_ms(50);
+        arm3(-20);  //20 5 -20
+        delay_ms(50);
+        arm4(-30); //0 0 -20
 		LED_SWITCH(LED_4);
         break;
       default:      break;

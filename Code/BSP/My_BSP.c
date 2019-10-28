@@ -135,11 +135,11 @@ void BSP_Init(uint32_t uart_bound, uint8_t delay_sysclk)
     
     arm1(0);//0 35 0
     delay_ms(50);
-    arm2(-60);//-10 10 -60
+    arm2(-70);//-10 10 -60
     delay_ms(50);
     arm3(-20);  //20 5 -20
     delay_ms(50);
-    arm4(-20); //0 0 -20
+    arm4(-100); //0 0 -20
     
     /* PS2初始化 */
     //InitPS2();

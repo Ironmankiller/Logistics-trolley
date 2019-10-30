@@ -103,7 +103,7 @@ void BSP_Init(uint32_t uart_bound, uint8_t delay_sysclk)
     /* IIC 6050 Init*/
     I2c_Soft_Init();
     MPU6050_Init(20);
-    delay_ms(20);
+    delay_ms(200);
     /* IIC2 60502 Init*/
     //I2c2_Soft_Init();
     //MPU60502_Init(20);

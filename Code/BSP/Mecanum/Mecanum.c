@@ -21,9 +21,11 @@ void Mecanum_Param_Init(void)
     memset(&Mecanum, 0, sizeof(sMecanum_Typedef));
     Mecanum.state = ready;
     Mecanum.RC_Velocity = 15.0f;
-	Mecanum.Gyro_K=0.0055;
-    Mecanum.Destination_Order = lrc;
+	Mecanum.Gyro_K=0.0060f;
     Mecanum.Departure_Order = rlc;
+    Mecanum.Processing_Place_Order = lrc;
+    Mecanum.Processing_Grab_Order = rlc;
+    Mecanum.Finish_Order = rlc;
     Init_flag = MY_TRUE;
 }
 
@@ -38,7 +40,6 @@ void Mecanum_Update(int A,int B,int C,int D)
     Mecanum.Encoder_B = B * 0.25f + Mecanum.Encoder_B*0.75f;
     Mecanum.Encoder_C = C * 0.25f + Mecanum.Encoder_C*0.75f;
     Mecanum.Encoder_D = D * 0.25f + Mecanum.Encoder_D*0.75f;
-    
 }
 
 /**************************************************************************

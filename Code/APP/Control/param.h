@@ -6,15 +6,17 @@
 #include "APP\Control\forward.h"
 #include "sys.h"
 
-extern int16_t grab_right[4];
-extern int16_t grab_left[4];
-extern int16_t grab_center[4];
+extern int16_t grab_departure_right[4];
+extern int16_t grab_departure_left[4];
+extern int16_t grab_departure_center[4];
+extern int16_t grab_processing[4];
 
-extern int16_t turn_destination[3];
+extern int16_t turn_processing[3];
 extern int16_t turn_departure[3];
+extern int16_t turn_finish[3];
 
 extern int16_t place_processing[4];
-extern int16_t place_finished[4];
+extern int16_t place_finish[4];
 
 extern pid pid_x;
 extern pid pid_y;

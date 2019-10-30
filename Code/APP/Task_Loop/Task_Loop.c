@@ -157,17 +157,29 @@ __INLINE static void Task_10ms(void)
     case goToDeparture:
         goToDeparture_control();
         break;
-    case grab:
-        grab_control();
+    case grabFromDeparture:
+        grabFromDeparture_control();
         break;
-    case goToDestination:
-        goToDestination_control();
+    case goToProcessing:
+        goToProcessing_control();
         break;
-    case place:
-        place_control();
+    case placeToProcessing:
+        placeToProcessing_control();
         break;
     case backToDeparture:
         backToDeparture_control(); 
+        break;
+    case grabFromProcessing:
+        grabFromProcessing_control();
+        break;
+    case goToFinish:
+        goToFinish_control();
+        break;
+    case placeToFinish:
+        placeToFinish_control();
+        break;
+    case backToProcessing:
+        backToProcessing_control();
         break;
     case back:
         back_control();
@@ -213,6 +225,7 @@ __INLINE static void Task_50ms(void)
     //HC165_Show();
       //  Track_Read();
     //u2_printf("AB=%.2f\tBC=%.2f\tCD=%.2f\tDA=%.2f\r\n",Mecanum.side_AB,Mecanum.side_BC,Mecanum.side_CD,Mecanum.side_DA);
+    u2_printf("x=%d\ty=%d\r\n",Mecanum.X_Length,Mecanum.Y_Length);
     
     /* 独立按键（调试用 比赛时慎用） */
     switch (KEY_Scan())
@@ -235,7 +248,7 @@ __INLINE static void Task_50ms(void)
         delay_ms(50);
         arm3(-20);  //20 5 -20
         delay_ms(50);
-        arm4(-30); //0 0 -20
+        arm4(-10); //0 0 -20
 		LED_SWITCH(LED_4);
         break;
       default:      break;

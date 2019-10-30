@@ -4,7 +4,7 @@
 void setmotor_pwm(unsigned short num,unsigned short pwm,unsigned short time);
 
 //四个关节舵机中值
-#define arm1_offset     1900
+#define arm1_offset     1885
 #define arm2_offset     1600
 #define arm3_offset     1180
 #define arm4_offset     1400

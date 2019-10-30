@@ -7,10 +7,14 @@
 
 void ready_control(void);
 void goToDeparture_control(void);
-void grab_control(void);
+void grabFromDeparture_control(void);
 void goToDestination_control(void);
-void place_control(void);
+void placeToProcessing_control(void);
 void backToDeparture_control(void);
+void grabFromProcessing_control(void);
+void goToFinish_control(void);
+void placeToFinish_control(void);
+void backToProcessing_control(void);
 void back_control(void);
 
 extern int flag;

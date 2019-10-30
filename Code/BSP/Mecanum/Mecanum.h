@@ -10,17 +10,21 @@
 
 
 
-#define a_PARAMETER  (0.183f) //x方向
-#define b_PARAMETER  (0.1735f) //y方向
+#define a_PARAMETER  (0.171f) //x方向
+#define b_PARAMETER  (0.191f) //y方向
 
 enum Run_State
 {
     ready,
     goToDeparture,
-    grab,
-    goToDestination,
-    place,
+    grabFromDeparture,
+    goToProcessing,
+    placeToProcessing,
     backToDeparture,
+    grabFromProcessing,
+    goToFinish,
+    placeToFinish,
+    backToProcessing,
     back
 };
 
@@ -48,7 +52,9 @@ typedef struct
     float side_CD;
     float side_DA;
     
-    enum Order_Set Destination_Order;
+    enum Order_Set Finish_Order;
+    enum Order_Set Processing_Grab_Order;
+    enum Order_Set Processing_Place_Order;
     enum Order_Set Departure_Order;
     
     u16 Y_Length;
@@ -79,9 +85,6 @@ typedef struct
 
     /* 速度限幅 */
     float RC_Velocity;
-
-    /* 转向标志位 */
-    Flag Turn_Flag;
 
     /* 运行状态标志位 */
      enum Run_State state;

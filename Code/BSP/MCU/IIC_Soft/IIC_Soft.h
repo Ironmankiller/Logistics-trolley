@@ -5,10 +5,10 @@
 #include "time.h"
 
 /***************I2C GPIO定义******************/
-#define ANO_GPIO_I2C	GPIOD
-#define I2C_Pin_SCL		GPIO_Pin_7
-#define I2C_Pin_SDA		GPIO_Pin_6
-#define ANO_RCC_I2C		RCC_AHB1Periph_GPIOD
+#define ANO_GPIO_I2C	GPIOE
+#define I2C_Pin_SCL		GPIO_Pin_8
+#define I2C_Pin_SDA		GPIO_Pin_10
+#define ANO_RCC_I2C		RCC_AHB1Periph_GPIOE
 /*********************************************/
 
 #define SCL_H         ANO_GPIO_I2C->BSRRL = I2C_Pin_SCL

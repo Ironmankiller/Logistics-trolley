@@ -2,7 +2,23 @@
 #include "pid.h"
 #include "forward.h"
 
+pos posScanQR1 = {10, 30};           //扫描二维码1
+pos posScanQR2 = {170, 30};          //扫描二维码2
+pos posScanQR3 = {170, 28};          //扫描二维码3
 
+pos posDeparture1 = {112, 40};       //物料区1
+pos posDeparture2 = {112, 4};        //物料区2
+
+pos posProcessR1 = {142, 170};       //加工区R1
+pos posProcessR2 = {142, 179};       //加工区R2
+pos posProcessL1 = {82, 170};        //加工区L1
+pos posProcessL2 = {82, 179};        //加工区L2
+pos posProcessC1 = {112, 163};       //加工区1C
+pos posProcessC2 = {112, 163};       //加工区2C
+
+pos posFinishR = {187, 77};          //成品区R32
+pos posFinishL = {187, 137};         //成品区R
+pos posFinishC = {187, 107};         //成品区R
 
 int16_t grab_departure_right[4] = {-30, 10, -10, 45};
 int16_t grab_departure_left[4] = {28, 13, -10, 45};
@@ -12,9 +28,14 @@ int16_t grab_processing[4] = {-180, 25, 25, 45};
 int16_t turn_processing[3] = {-180, -60, -35};
 int16_t turn_departure[3] = {0, -60, -35};
 int16_t turn_finish[3] = {90, -60, -35};
+int16_t turn_scan[3] = {0, -35, 20};
 
 int16_t place_processing[4] = {-180, 25, 25, 0};
 int16_t place_finish[4] = {90, 25, 25, 0};
+
+int16_t move_scan_color[4] = {0, -35, 20, -100};
+int16_t move_scan_grab[4] = {0, 0, -5, -100};
+int16_t move_ready[4] = {0, -70, -20, -10};
 
 pid pid_motorA_speed;
 pid pid_motorB_speed;

@@ -64,3 +64,4 @@
 .\objects\control.o: ..\Code\BSP\Motor_Drive\Servo_Moto.h
 .\objects\control.o: ..\Code\BSP\SYSTEM\delay\delay.h
 .\objects\control.o: ..\Code\APP\Track\Track.h
+.\objects\control.o: ..\Code\APP\OpenMV\OpenMV.h

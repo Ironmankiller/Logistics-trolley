@@ -6,6 +6,29 @@
 #include "APP\Control\forward.h"
 #include "sys.h"
 
+typedef struct
+{
+    int16_t x;
+    int16_t y;
+}pos;  //坐标结构体
+
+extern pos posScanQR1;
+extern pos posScanQR2;
+extern pos posScanQR3;
+extern pos posDeparture1;
+extern pos posDeparture2;
+
+extern pos posProcessR1;
+extern pos posProcessR2;
+extern pos posProcessL1;
+extern pos posProcessL2;
+extern pos posProcessC1;
+extern pos posProcessC2;
+
+extern pos posFinishR;
+extern pos posFinishL;
+extern pos posFinishC;
+
 extern int16_t grab_departure_right[4];
 extern int16_t grab_departure_left[4];
 extern int16_t grab_departure_center[4];
@@ -14,9 +37,15 @@ extern int16_t grab_processing[4];
 extern int16_t turn_processing[3];
 extern int16_t turn_departure[3];
 extern int16_t turn_finish[3];
+extern int16_t turn_scan[3];
 
 extern int16_t place_processing[4];
 extern int16_t place_finish[4];
+
+extern int16_t move_scan_color[4];
+extern int16_t move_scan_grab[4];
+extern int16_t move_ready[4];
+
 
 extern pid pid_x;
 extern pid pid_y;

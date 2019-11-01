@@ -47,3 +47,7 @@
 .\objects\openmv.o: ..\Code\BSP\Motor_Drive\Servo_Moto.h
 .\objects\openmv.o: ..\Code\BSP\SYSTEM\usart\Printf_Uart.h
 .\objects\openmv.o: F:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\openmv.o: ..\Code\BSP\Mecanum\Mecanum.h
+.\objects\openmv.o: ..\Code\BSP\PS2\PS2.h
+.\objects\openmv.o: F:\keil5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\openmv.o: ..\Code\BSP\SYSTEM\delay\delay.h

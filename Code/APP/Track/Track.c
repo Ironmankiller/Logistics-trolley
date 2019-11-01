@@ -3,6 +3,7 @@
 #include "BSP\Mecanum\Mecanum.h"
 #include "BSP\SYSTEM\usart\Printf_Uart.h"
 static float findCenter(u16 data);
+static u16 findNum(u16 data);
 
 void Track_Init(void){
     HC165_Init();
@@ -32,21 +33,24 @@ void Track_Read(void){
     HC165_CLK_H;
     HC165_delay();
     side_BC = HC165_Read_2Byte();
-    HC165_CLK_L;
-    HC165_delay();
-    HC165_CLK_H;
-    HC165_delay();
-    side_AB = HC165_Read_2Byte();
-    HC165_CLK_L;
-    HC165_delay();
-    HC165_CLK_H;
-    HC165_delay();
-    side_DA = HC165_Read_2Byte();
+//    HC165_CLK_L;
+//    HC165_delay();
+//    HC165_CLK_H;
+//    HC165_delay();
+//    side_AB = HC165_Read_2Byte();
+//    HC165_CLK_L;
+//    HC165_delay();
+//    HC165_CLK_H;
+//    HC165_delay();
+//    side_DA = HC165_Read_2Byte();
     
-    Mecanum.side_AB = findCenter(side_AB)*0.3f+Mecanum.side_AB*0.7f;
-    Mecanum.side_BC = findCenter(side_BC)*0.3f+Mecanum.side_BC*0.7f;
-    Mecanum.side_CD = findCenter(side_CD)*0.3f+Mecanum.side_CD*0.7f;
-    Mecanum.side_DA = findCenter(side_DA)*0.3f+Mecanum.side_DA*0.7f;
+//    Mecanum.side_AB = findNum(side_AB);
+    Mecanum.side_BC = findNum(side_BC);
+    Mecanum.side_CD = findNum(side_CD);
+//    Mecanum.side_DA = findNum(side_DA);
+//    Mecanum.side_BC = findCenter(side_BC)*0.3f+Mecanum.side_BC*0.7f;
+//    Mecanum.side_CD = findCenter(side_CD)*0.3f+Mecanum.side_CD*0.7f;
+//    Mecanum.side_DA = findCenter(side_DA)*0.3f+Mecanum.side_DA*0.7f;
     
 
 //    for(int i=15;i>=0;i--){
@@ -96,6 +100,18 @@ void Track_Read(void){
 
 //    u1_printf("\r\n");
     
+}
+
+static u16 findNum(u16 data) {
+    u16 temp;
+    u16 num = 0;
+    for(int i=0;i<16;i++){
+        temp = data>>i;
+        if((temp&0x0001) == 0) {
+            num++;
+        }
+    }
+    return num;
 }
 
 static float findCenter(u16 data){

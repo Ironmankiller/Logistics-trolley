@@ -192,40 +192,7 @@
           <Name>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_512 -FS08000000 -FL080000 -FP0($$Device:STM32F407VETx$CMSIS\Flash\STM32F4xx_512.FLM))</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>88</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134245554</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>F:\office\鐢靛瓙璁捐\鐗╂祦灏忚溅\鐗╂祦灏忚溅\Code\APP\Control\Control.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\NUEDC_2017\../Code/APP/Control/Control.c\88</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>178</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134243936</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>F:\office\鐢靛瓙璁捐\鐗╂祦灏忚溅\鐗╂祦灏忚溅\Code\APP\Control\Control.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\NUEDC_2017\../Code/APP/Control/Control.c\178</Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -563,8 +530,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Code\BSP\Time\Time.c</PathWithFileName>
-      <FilenameWithoutPath>Time.c</FilenameWithoutPath>
+      <PathWithFileName>..\Code\BSP\OLED\OLED.c</PathWithFileName>
+      <FilenameWithoutPath>OLED.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -576,8 +543,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Code\BSP\MCU\FLASH\stmflash.c</PathWithFileName>
-      <FilenameWithoutPath>stmflash.c</FilenameWithoutPath>
+      <PathWithFileName>..\Code\BSP\Time\Time.c</PathWithFileName>
+      <FilenameWithoutPath>Time.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -589,8 +556,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Code\BSP\OLED\OLED.c</PathWithFileName>
-      <FilenameWithoutPath>OLED.c</FilenameWithoutPath>
+      <PathWithFileName>..\Code\BSP\MCU\FLASH\stmflash.c</PathWithFileName>
+      <FilenameWithoutPath>stmflash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -523,6 +523,11 @@
               <FilePath>..\Code\BSP\MCU\SysTick\SysTick.c</FilePath>
             </File>
             <File>
+              <FileName>OLED.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Code\BSP\OLED\OLED.c</FilePath>
+            </File>
+            <File>
               <FileName>Time.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Code\BSP\Time\Time.c</FilePath>
@@ -531,11 +536,6 @@
               <FileName>stmflash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Code\BSP\MCU\FLASH\stmflash.c</FilePath>
-            </File>
-            <File>
-              <FileName>OLED.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Code\BSP\OLED\OLED.c</FilePath>
             </File>
             <File>
               <FileName>Encoder.c</FileName>

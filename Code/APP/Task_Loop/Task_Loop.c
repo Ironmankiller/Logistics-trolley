@@ -34,6 +34,7 @@
 #include "BSP\Motor_Drive\Steer_Moto.h"
 #include "APP\Track\Track.h"
 #include "BSP\74HC165\74HC165.h"
+#include "APP\OpenMV\OpenMV.h"
 
 /* 任务循环计时结构体 */
 typedef struct {
@@ -154,6 +155,9 @@ __INLINE static void Task_10ms(void)
     case ready:
         ready_control();
         break;
+    case scan:
+        scan_control();
+        break;
     case goToDeparture:
         goToDeparture_control();
         break;
@@ -196,7 +200,7 @@ __INLINE static void Task_10ms(void)
 __INLINE static void Task_20ms(void)
 {
     /* PS2 */
-    Remote();
+    //Remote();
     //u1_printf("X:%d\tY:%d\r\n",Mecanum.X_Length,Mecanum.Y_Length);
     /* 发送传感器参数到上位机 */
 //    ANO_DT_Send_Senser(
@@ -206,6 +210,7 @@ __INLINE static void Task_20ms(void)
 
 //    ANO_DT_Send_Status(EulerAngle.Roll, EulerAngle.Pitch, EulerAngle.Yaw, 0, 0, 1);
 }
+
 
 /**********************************************
 * 50ms任务
@@ -220,12 +225,14 @@ __INLINE static void Task_50ms(void)
     LED_Blink(LED_1);
 
     /* 显示 */
-//    Display_Mecanum();
+    Track_Read();
+    Display_Mecanum();
+    //Display_TIME();
     
     //HC165_Show();
       //  Track_Read();
     //u2_printf("AB=%.2f\tBC=%.2f\tCD=%.2f\tDA=%.2f\r\n",Mecanum.side_AB,Mecanum.side_BC,Mecanum.side_CD,Mecanum.side_DA);
-    u2_printf("x=%d\ty=%d\r\n",Mecanum.X_Length,Mecanum.Y_Length);
+    //u2_printf("x=%d\ty=%d\r\n",Mecanum.X_Length,Mecanum.Y_Length);
     
     /* 独立按键（调试用 比赛时慎用） */
     switch (KEY_Scan())
@@ -238,17 +245,15 @@ __INLINE static void Task_50ms(void)
         break;
     case 4:
         //Mecanum.state = goToDeparture;
+        arm2(-35);
+        delay_ms(20);
+        arm3(20);
+        delay_ms(20);
+        OpenMV_Read_Color();
         LED_SWITCH(LED_3);
         break;
     case 5:
-        Mecanum.state = goToDeparture;
-        arm1(0);//0 35 0
-        delay_ms(50);
-        arm2(-70);//-10 10 -60
-        delay_ms(50);
-        arm3(-20);  //20 5 -20
-        delay_ms(50);
-        arm4(-10); //0 0 -20
+        Mecanum.state = scan;
 		LED_SWITCH(LED_4);
         break;
       default:      break;

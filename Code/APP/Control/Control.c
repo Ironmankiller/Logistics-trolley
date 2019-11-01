@@ -24,6 +24,7 @@
 #include "delay.h"
 #include "math.h"
 #include "APP\Track\Track.h"
+#include "APP\OpenMV\OpenMV.h"
 
 #define RIGHT 2
 #define CENTER 1
@@ -33,26 +34,21 @@ Flag Init_flag = MY_TRUE; //初始化标志位
 u8 step=0;                //当前搬运第几个五块
 u8 order[3];              //搬运顺序
 float Target_Velocity = 0;//小车目标速度
-#define Z -2.1           //抵消小车的轴向旋转
+#define Z -2.35           //抵消小车的轴向旋转
 /************************************************************************
 Car Control
 ************************************************************************/
 static void order_set(u8 *order,enum Order_Set nowOrder);      //设置顺序
 static void stop_control(u8 *Flag_Run);                        //小车停止
-static void goToXY_control(int x,int y,u8 *Flag_Run);          //XY方向
+static void goToXY_control(int16_t x,int16_t y,u8 *Flag_Run);          //XY方向
 //static void calibrateXY_control(float x, float y, u8 *Flag_Run);//感光条校准
 static void grab_hand(int16_t *grab);                          //按照传入的参数控制机械臂抓取
 static void turn_hand(int16_t *turn);                          //按照传入的参数控制机械臂转向
 static void place_hand(int16_t * place);                       //控制机械臂放置    
+static void move_hand(int16_t *move);                          //快速转动机械臂
 
 void ready_control(void){
-
-    if(Init_flag == MY_TRUE) {
-        //grab_hand(grab_center);
-        //turn_hand(turn_departure);
-        //place_hand(place_processing);
-        Init_flag = MY_FALSE;
-    }
+    
     if(PS2_ON_Flag == MY_TRUE)
         PS2_Usart_Control();             //PS2手柄控制小车，如果已经初始化PS2则执行
     Kinematic_Analysis(0,0,Z);           //小车运动学分析
@@ -60,21 +56,65 @@ void ready_control(void){
     pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);   //pid控制
 }
 
+void scan_control(void) {
+    
+    static u8 left_right_flag=0;
+    static u8 Flag_Run=0;
+    
+    if(Flag_Run == 0) {                     //边跑边检测颜色
+        if(Init_flag == MY_TRUE) {
+            move_hand(move_scan_color);           //伸手检测颜色
+            OpenMV_Read_Color();
+            Init_flag = MY_FALSE;
+        }
+        goToXY_control(posScanQR1.x,posScanQR2.y, &Flag_Run);
+    } else if(Flag_Run == 1) {
+        Init_flag = MY_TRUE;
+        goToXY_control(posScanQR2.x,posScanQR2.y, &Flag_Run);
+    } else if(Flag_Run == 2) {
+        if(Init_flag == MY_TRUE){
+            move_hand(move_scan_grab);            //伸手准备扫二维码
+            Init_flag = MY_FALSE;
+        }
+        goToXY_control(posScanQR3.x,posScanQR3.y, &Flag_Run);
+    } else if(Flag_Run == 3) {
+        Init_flag = MY_TRUE;
+        stop_control(&Flag_Run);                  //停车
+    } else if(Flag_Run == 4) {
+        if(Init_flag == MY_TRUE){
+            OpenMV_Read_Grab();                   //扫码
+            Init_flag = MY_FALSE;
+        }
+        
+        if(Mecanum.grab_order_ready == MY_TRUE) { //扫到了
+            Flag_Run++;
+            move_hand(move_ready);
+            Mecanum.state = goToDeparture;
+        } else {                                  //转头
+            if(left_right_flag == 0){
+                setmotor_pwm(1, 30 + 1885, 1200);
+                delay_ms(1000);
+                left_right_flag =1;
+            }else{
+                setmotor_pwm(1, -30 + 1885, 1200);
+                delay_ms(1000);
+                left_right_flag =0;
+            }
+        }
+    }
+}
+
 void goToDeparture_control(void) {
     
     static u8 Flag_Run=0;         //标识当前运行阶段
- 
+        
     if(Flag_Run == 0) {
-        goToXY_control(112,30, &Flag_Run); 
+        goToXY_control(posDeparture1.x,posDeparture1.y, &Flag_Run);
     } else if(Flag_Run == 1) {
-        goToXY_control(112,4,&Flag_Run);
+        goToXY_control(posDeparture2.x,posDeparture2.y,&Flag_Run);
     } else if(Flag_Run == 2) {
         stop_control(&Flag_Run);
-    } else if(Flag_Run == 3){
-        stop_control(&Flag_Run);
-    } else if(Flag_Run == 4) {
-        stop_control(&Flag_Run);
-    } else if(Flag_Run == 5) {
+    } else if(Flag_Run == 3) {
         Init_flag = MY_TRUE;
         Mecanum.state = grabFromDeparture;
         Flag_Run = 0;
@@ -87,10 +127,6 @@ void grabFromDeparture_control(void) {
         order_set(order,Mecanum.Departure_Order);
         Init_flag = MY_FALSE;
     }
-    MOTO_A_Set(0);
-    MOTO_B_Set(0);
-    MOTO_C_Set(0);
-    MOTO_D_Set(0);
     if(order[step] == RIGHT){
         grab_hand(grab_departure_right);
     } else if(order[step] == LEFT){
@@ -110,7 +146,7 @@ void goToProcessing_control(void) {
     static u8 Flag_Run=0;
 
     if(Init_flag == MY_TRUE){
-        order_set(order,Mecanum.Processing_Place_Order);
+        order_set(order,Mecanum.Place_Order);
         Init_flag = MY_FALSE;
         turn_hand(turn_processing);
     }
@@ -118,25 +154,25 @@ void goToProcessing_control(void) {
     if(Flag_Run == 0) {
         switch(order[step]){
             case RIGHT:
-                goToXY_control(145,155,&Flag_Run);
+                goToXY_control(posProcessR1.x,posProcessR1.y,&Flag_Run);
                 break;
             case LEFT:
-                goToXY_control(69,155,&Flag_Run);
+                goToXY_control(posProcessL1.x,posProcessL1.y,&Flag_Run);
                 break;
             case CENTER:
-                goToXY_control(112,163,&Flag_Run);
+                goToXY_control(posProcessC1.x,posProcessC1.y,&Flag_Run);
                 break;
         }
     } else if(Flag_Run == 1) {
         switch(order[step]){
             case RIGHT:
-                goToXY_control(142,179,&Flag_Run);
+                goToXY_control(posProcessR2.x,posProcessR2.y,&Flag_Run);
                 break;
             case LEFT:
-                goToXY_control(82,179,&Flag_Run);
+                goToXY_control(posProcessL2.x,posProcessL2.y,&Flag_Run);
                 break;
             case CENTER:
-                goToXY_control(112,163,&Flag_Run);
+                goToXY_control(posProcessC2.x,posProcessC2.y,&Flag_Run);
                 break;
         }
     } else if(Flag_Run == 2) {
@@ -150,10 +186,6 @@ void goToProcessing_control(void) {
 
 void placeToProcessing_control(void) {
     
-    MOTO_A_Set(0);
-    MOTO_B_Set(0);
-    MOTO_C_Set(0);
-    MOTO_D_Set(0);
     place_hand(place_processing);
     
     if(step == 3){
@@ -175,14 +207,10 @@ void backToDeparture_control(void) {
     }
 
     if(Flag_Run == 0) {
-        goToXY_control(112,4,&Flag_Run);
+        goToXY_control(posDeparture2.x,posDeparture2.y,&Flag_Run);
     } else if(Flag_Run == 1) {
         stop_control(&Flag_Run);
     } else if(Flag_Run == 2) {
-        stop_control(&Flag_Run);
-    } else if(Flag_Run == 3) {
-        stop_control(&Flag_Run);
-    } else if(Flag_Run == 4) {
         Mecanum.state = grabFromDeparture;
         Init_flag = MY_TRUE;
         Flag_Run = 0;
@@ -193,7 +221,7 @@ void backToProcessing_control(void) {
     
     static u8 Flag_Run = 0;
     if(Init_flag == MY_TRUE){
-        order_set(order,Mecanum.Processing_Grab_Order);
+        order_set(order,Mecanum.Departure_Order);
         turn_hand(turn_processing);
         Init_flag = MY_FALSE;
     }
@@ -201,25 +229,25 @@ void backToProcessing_control(void) {
     if(Flag_Run == 0) {
         switch(order[step]){
             case RIGHT:
-                goToXY_control(145,155,&Flag_Run);  //有问题！！
+                goToXY_control(posProcessR1.x,posProcessR1.y,&Flag_Run);
                 break;
             case LEFT:
-                goToXY_control(69,155,&Flag_Run);
+                goToXY_control(posProcessL1.x,posProcessL1.y,&Flag_Run);
                 break;
             case CENTER:
-                goToXY_control(112,163,&Flag_Run);
+                goToXY_control(posProcessC1.x,posProcessC1.y,&Flag_Run);
                 break;
         }
     } else if(Flag_Run == 1) {
         switch(order[step]){
             case RIGHT:
-                goToXY_control(142,179,&Flag_Run);  //有问题！！
+                goToXY_control(posProcessR2.x,posProcessR2.y,&Flag_Run);  //有问题！！
                 break;
             case LEFT:
-                goToXY_control(82,179,&Flag_Run);
+                goToXY_control(posProcessL2.x,posProcessL2.y,&Flag_Run);
                 break;
             case CENTER:
-                goToXY_control(112,163,&Flag_Run);
+                goToXY_control(posProcessC2.x,posProcessC2.y,&Flag_Run);
                 break;
         }
     } else if(Flag_Run == 2) {
@@ -232,10 +260,6 @@ void backToProcessing_control(void) {
 
 void grabFromProcessing_control(void) {
     
-    MOTO_A_Set(0);
-    MOTO_B_Set(0);
-    MOTO_C_Set(0);
-    MOTO_D_Set(0);
     grab_hand(grab_processing);
     Mecanum.state = goToFinish;
     Init_flag = MY_TRUE;
@@ -246,7 +270,7 @@ void goToFinish_control(void) {
     static u8 Flag_Run=0;
 
     if(Init_flag == MY_TRUE){
-        order_set(order,Mecanum.Finish_Order);
+        order_set(order,Mecanum.Place_Order);
         Init_flag = MY_FALSE;
         turn_hand(turn_finish);
     }
@@ -254,13 +278,13 @@ void goToFinish_control(void) {
     if(Flag_Run == 0) {
         switch(order[step]){
             case RIGHT:
-                goToXY_control(191,77,&Flag_Run);
+                goToXY_control(posFinishR.x,posFinishR.y,&Flag_Run);
                 break;
             case LEFT:
-                goToXY_control(191,137,&Flag_Run);
+                goToXY_control(posFinishL.x,posFinishL.y,&Flag_Run);
                 break;
             case CENTER:
-                goToXY_control(191,107,&Flag_Run);
+                goToXY_control(posFinishC.x,posFinishC.y,&Flag_Run);
                 break;
         }
     } else if(Flag_Run == 1) {
@@ -274,10 +298,6 @@ void goToFinish_control(void) {
 
 void placeToFinish_control(void) {
     
-    MOTO_A_Set(0);
-    MOTO_B_Set(0);
-    MOTO_C_Set(0);
-    MOTO_D_Set(0);
     place_hand(place_finish);
     
     if(step == 3){
@@ -324,10 +344,10 @@ static void stop_control(u8 *Flag_Run) {
         }
     } else {
         counter = 0;
+        Kinematic_Analysis(0,0,Z);           //小车运动学分析
+        pid_setup_mecanum_speed();           //小车各轮子速度期望
+        pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);   //pid控制
     }
-    Kinematic_Analysis(0,0,Z);           //小车运动学分析
-    pid_setup_mecanum_speed();           //小车各轮子速度期望
-    pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);   //pid控制
 }
 
 static void order_set(u8 *order,enum Order_Set nowOrder) {
@@ -341,7 +361,7 @@ static void order_set(u8 *order,enum Order_Set nowOrder) {
     }
 }
 
-static void goToXY_control(int x,int y,u8 *Flag_Run) {
+static void goToXY_control(int16_t x,int16_t y,u8 *Flag_Run) {
     
     float D,Dx,Dy;
     
@@ -350,19 +370,18 @@ static void goToXY_control(int x,int y,u8 *Flag_Run) {
 
     D = sqrt((double)(Dx*Dx + Dy*Dy));
     
-    if(D>50){
-        Target_Velocity=40;
+    if(D>45){
+        Target_Velocity=45;
     }
-    else if(D>15){
-        Target_Velocity=D - 10.0f;
+    else if(D>5){
+        Target_Velocity=D;
     }
     else {
         Target_Velocity=5; 
     } 
     
     if(Target_Velocity>Mecanum.RC_Velocity) Mecanum.RC_Velocity+=0.5f;
-        else if(Target_Velocity<Mecanum.RC_Velocity) Mecanum.RC_Velocity-=1.0f;
-        //else if(Target_Velocity<Mecanum.RC_Velocity) Mecanum.RC_Velocity=Target_Velocity;
+        else if(Target_Velocity<Mecanum.RC_Velocity) Mecanum.RC_Velocity=Target_Velocity;
     
     Mecanum.Move_X = Mecanum.RC_Velocity*Dx/D;
     Mecanum.Move_Y = Mecanum.RC_Velocity*Dy/D;
@@ -371,13 +390,15 @@ static void goToXY_control(int x,int y,u8 *Flag_Run) {
     
     if(Dy==0 && Dx==0) {
         (*Flag_Run)++;        
-        Mecanum.Move_X = 0;
-        Mecanum.Move_Y = 0;
-        Mecanum.Move_Z = 0;
+        MOTO_A_Set(0);
+        MOTO_B_Set(0);
+        MOTO_C_Set(0);
+        MOTO_D_Set(0);
+    } else {
+        Kinematic_Analysis(Mecanum.Move_X,Mecanum.Move_Y,Mecanum.Move_Z);  //进行运动学分析
+        pid_setup_mecanum_speed();
+        pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);
     }
-    Kinematic_Analysis(Mecanum.Move_X,Mecanum.Move_Y,Mecanum.Move_Z);  //进行运动学分析
-    pid_setup_mecanum_speed();
-    pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);
 }
 
 //static void calibrateXY_control(float x, float y, u8 *Flag_Run) {    //垃圾东西 千万别用
@@ -438,10 +459,10 @@ static void turn_hand(int16_t *turn) {
     arm2(turn[1]);
     delay_ms(100);
     arm3(turn[2]);
-    delay_ms(500);
+    delay_ms(400);
     arm1(turn[0]);
-    delay_ms(500);
-    delay_ms(1500);
+    delay_ms(1200);
+    //delay_ms(1000);
 }
 
 static void place_hand(int16_t * place) {
@@ -454,4 +475,15 @@ static void place_hand(int16_t * place) {
     delay_ms(1000);
     arm4(place[3]);
     delay_ms(1000);
+}
+
+static void move_hand(int16_t *move) {
+    
+    //arm1(move[0]);
+    //delay_ms(20);
+    arm2(move[1]);
+    delay_ms(20);
+    arm3(move[2]);
+    delay_ms(20);
+    arm4(move[3]);
 }

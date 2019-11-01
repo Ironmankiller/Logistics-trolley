@@ -15,17 +15,18 @@
 
 enum Run_State
 {
-    ready,
-    goToDeparture,
-    grabFromDeparture,
-    goToProcessing,
-    placeToProcessing,
-    backToDeparture,
-    grabFromProcessing,
-    goToFinish,
-    placeToFinish,
-    backToProcessing,
-    back
+    ready,                   //就绪
+    scan,                    //扫描
+    goToDeparture,           //前往原料区
+    grabFromDeparture,       //在原料区抓取物料
+    goToProcessing,          //前往加工区
+    placeToProcessing,       //在加工区放置物料
+    backToDeparture,         //返回原料区
+    grabFromProcessing,      //在加工区抓取物料
+    goToFinish,              //前往成品区
+    placeToFinish,           //在成品区放置物料
+    backToProcessing,        //返回加工区
+    back                     //返回起始位置
 };
 
 enum Order_Set
@@ -38,6 +39,16 @@ enum Order_Set
     crl
 };
 
+enum rgb_Order
+{
+    RGB,
+    RBG,
+    GRB,
+    GBR,
+    BRG,
+    BGR
+};
+
 // 小车麦轮编号
 //     头
 //   B—^—C
@@ -47,16 +58,27 @@ enum Order_Set
 
 typedef struct
 {
+    /* 感光条参数(不可用) */
     float side_AB;
     float side_BC;
     float side_CD;
     float side_DA;
     
-    enum Order_Set Finish_Order;
-    enum Order_Set Processing_Grab_Order;
-    enum Order_Set Processing_Place_Order;
+    /* 放置顺序(左右中) */
+    enum Order_Set Place_Order;
+    /* 抓取顺序(左右中) */
     enum Order_Set Departure_Order;
     
+    /* 颜色顺序(rgb) */
+    enum rgb_Order Color;
+    /* 夹取顺序(rgb) */
+    enum rgb_Order Grab;
+    /* 颜色顺序检测标志位 */
+    Flag color_order_ready;
+    /* 夹取顺序检测标志位 */
+    Flag grab_order_ready;
+    
+    /* XY轴位置坐标 */
     u16 Y_Length;
     u16 X_Length;
 

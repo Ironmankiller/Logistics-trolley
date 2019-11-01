@@ -76,3 +76,4 @@
 .\objects\task_loop.o: ..\Code\BSP\Motor_Drive\Steer_Moto.h
 .\objects\task_loop.o: ..\Code\APP\Track\Track.h
 .\objects\task_loop.o: ..\Code\BSP\74HC165\74HC165.h
+.\objects\task_loop.o: ..\Code\APP\OpenMV\OpenMV.h

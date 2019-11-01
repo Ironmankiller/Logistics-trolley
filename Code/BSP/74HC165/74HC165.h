@@ -9,9 +9,9 @@
 #define HC165_SHLD_GPIO_CLK               RCC_AHB1Periph_GPIOD
 #define HC165_SHLD_GPIO_PIN               GPIO_Pin_8
 //CLK
-#define HC165_CLK_GPIO_PORT               GPIOE
-#define HC165_CLK_GPIO_CLK                RCC_AHB1Periph_GPIOE
-#define HC165_CLK_GPIO_PIN                GPIO_Pin_15
+#define HC165_CLK_GPIO_PORT               GPIOD
+#define HC165_CLK_GPIO_CLK                RCC_AHB1Periph_GPIOD
+#define HC165_CLK_GPIO_PIN                GPIO_Pin_9
 //DATA
 #define HC165_DATA_GPIO_PORT              GPIOD
 #define HC165_DATA_GPIO_CLK               RCC_AHB1Periph_GPIOD

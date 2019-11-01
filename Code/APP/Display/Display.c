@@ -125,63 +125,67 @@ void Display_IMU(void)
 
 void Display_Mecanum()
 {
-	//=============第1行显示3轴角度===============//	
-  	OLED_ShowString(0,0,"X:");
-	if(EulerAngle.Pitch<0)		OLED_ShowNumber(15,0,EulerAngle.Pitch+360,3,12);
-	else			OLED_ShowNumber(15,0,EulerAngle.Pitch,3,12);	
-       
-  	OLED_ShowString(40,0,"Y:");
-	if(EulerAngle.Roll<0)		OLED_ShowNumber(55,0,EulerAngle.Roll+360,3,12);
-	else			OLED_ShowNumber(55,0,EulerAngle.Roll,3,12);	
-	
-	OLED_ShowString(80,0,"Z:");
-	if(EulerAngle.Yaw<0)		OLED_ShowNumber(95,0,EulerAngle.Yaw+360,3,12);
-	else		    OLED_ShowNumber(95,0,EulerAngle.Yaw,3,12);		
+	//=============第1行显示显示扫到的颜色===============//	
+  	OLED_ShowString(0,0,"color:");
+    if(Mecanum.color_order_ready == MY_TRUE) {
+        switch(Mecanum.Color){
+            case RGB: OLED_ShowString(40,0,"RGB"); break;
+            case RBG: OLED_ShowString(40,0,"RBG"); break;
+            case GBR: OLED_ShowString(40,0,"GBR"); break;
+            case GRB: OLED_ShowString(40,0,"GRB"); break;
+            case BRG: OLED_ShowString(40,0,"BRG"); break;
+            case BGR: OLED_ShowString(40,0,"BGR"); break;
+        }
+    } else {
+        OLED_ShowString(40,0,"   ");
+    }
+    
+    //=============第2行显示显示二维码标识的顺序===============//	
+    OLED_ShowString(0,10,"grab:");
+    if(Mecanum.grab_order_ready == MY_TRUE) {
+        switch(Mecanum.Grab){
+            case RGB: OLED_ShowString(40,10,"RGB"); break;
+            case RBG: OLED_ShowString(40,10,"RBG"); break;
+            case GBR: OLED_ShowString(40,10,"GBR"); break;
+            case GRB: OLED_ShowString(40,10,"GRB"); break;
+            case BRG: OLED_ShowString(40,10,"BRG"); break;
+            case BGR: OLED_ShowString(40,10,"BGR"); break;
+        }
+    } else {
+        OLED_ShowString(40,10,"   ");
+    }
 
-	    //=============显示电机A的状态=======================//	
-	    if(Mecanum.Target_A<0)  OLED_ShowString(00,10,"-"),
-		                        OLED_ShowNumber(15,10,-Mecanum.Target_A,5,12);
-		else                    OLED_ShowString(0,10,"+"),
-		                        OLED_ShowNumber(15,10, Mecanum.Target_A,5,12); 
-		
-		if(Mecanum.Encoder_A<0) OLED_ShowString(80,10,"-"),
-		                        OLED_ShowNumber(95,10,-Mecanum.Encoder_A,4,12);
-		else                 	OLED_ShowString(80,10,"+"),
-		                        OLED_ShowNumber(95,10, Mecanum.Encoder_A,4,12);
-		//=============显示电机B的状态=======================//	
-		if(Mecanum.Target_B<0)  OLED_ShowString(00,20,"-"),
-		                        OLED_ShowNumber(15,20,-Mecanum.Target_B,5,12);
-		else                 	OLED_ShowString(0,20,"+"),
-		                        OLED_ShowNumber(15,20, Mecanum.Target_B,5,12); 
-		  
-		if(Mecanum.Encoder_B<0) OLED_ShowString(80,20,"-"),
-		                        OLED_ShowNumber(95,20,-Mecanum.Encoder_B,4,12);
-		else                 	OLED_ShowString(80,20,"+"),
-		                        OLED_ShowNumber(95,20, Mecanum.Encoder_B,4,12);
- 		//=============显示电机C的状态=======================//	
-		if(Mecanum.Target_C<0)  OLED_ShowString(00,30,"-"),
-		                        OLED_ShowNumber(15,30,-Mecanum.Target_C,5,12);
-		else                 	OLED_ShowString(0,30,"+"),
-		                        OLED_ShowNumber(15,30, Mecanum.Target_C,5,12); 
-		  
-		if(Mecanum.Encoder_C<0) OLED_ShowString(80,30,"-"),
-		                        OLED_ShowNumber(95,30,-Mecanum.Encoder_C,4,12);
-		else                 	OLED_ShowString(80,30,"+"),
-		                        OLED_ShowNumber(95,30, Mecanum.Encoder_C,4,12);	
-		//=============显示电机D的状态=======================//	
-		if(Mecanum.Target_D<0)  OLED_ShowString(00,40,"-"),
-		                        OLED_ShowNumber(15,40,-Mecanum.Target_D,5,12);
-		else                 	OLED_ShowString(0,40,"+"),
-		                        OLED_ShowNumber(15,40, Mecanum.Target_D,5,12); 
-		
-		if(Mecanum.Encoder_D<0) OLED_ShowString(80,40,"-"),
-		                        OLED_ShowNumber(95,40,-Mecanum.Encoder_D,4,12);
-		else                 	OLED_ShowString(80,40,"+"),
-		                        OLED_ShowNumber(95,40, Mecanum.Encoder_D,4,12);
-		//=============第五行显示电压=======================//
-
-		//=============刷新=======================//
-		OLED_Refresh_Gram();	
+    //=============第3显示当前运行状态===============//
+    OLED_ShowString(0,20,"state:");
+    switch(Mecanum.state){
+        case ready: OLED_ShowString(40,20,"ready    "); break;
+        case scan: OLED_ShowString(40,20,"scan     "); break;
+        case goToDeparture: OLED_ShowString(40,20,"goToD    "); break;
+        case grabFromDeparture: OLED_ShowString(40,20,"grabFromD"); break;
+        case goToProcessing: OLED_ShowString(40,20,"goToP    "); break;
+        case placeToProcessing: OLED_ShowString(40,20,"placeToP "); break;
+        case backToDeparture: OLED_ShowString(40,20,"backToD  "); break;
+        case grabFromProcessing: OLED_ShowString(40,20,"grabFromP"); break;
+        case goToFinish: OLED_ShowString(40,20,"goToF    "); break;
+        case placeToFinish: OLED_ShowString(40,20,"placeToF "); break;
+        case backToProcessing: OLED_ShowString(40,20,"backToP  "); break;
+        case back: OLED_ShowString(40,20,"back     "); break;
+    }
+    
+    //=============第4显示当前位置坐标===============//
+    OLED_ShowString(0,30,"X:");
+    OLED_ShowNumber(30,30,Mecanum.X_Length,3,12);
+    OLED_ShowString(60,30,"Y:");
+    OLED_ShowNumber(90,30,Mecanum.Y_Length,3,12);
+    
+    //=============第4显示当前位置坐标===============//
+    OLED_ShowString(0,40,"BC:");
+    OLED_ShowNumber(30,40,Mecanum.side_BC,2,12);
+    OLED_ShowString(60,40,"CD:");
+    OLED_ShowNumber(90,40,Mecanum.side_CD,2,12);
+    
+    //=============刷新=======================//
+	OLED_Refresh_Gram();	
 	}
 
 /**********************************************

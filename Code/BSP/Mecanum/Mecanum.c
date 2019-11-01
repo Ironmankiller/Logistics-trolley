@@ -20,12 +20,12 @@ void Mecanum_Param_Init(void)
 {
     memset(&Mecanum, 0, sizeof(sMecanum_Typedef));
     Mecanum.state = ready;
-    Mecanum.RC_Velocity = 15.0f;
-	Mecanum.Gyro_K=0.0060f;
+	Mecanum.Gyro_K=0.0065f;
+    
+    Mecanum.color_order_ready = MY_FALSE;
+    Mecanum.grab_order_ready = MY_FALSE;
     Mecanum.Departure_Order = rlc;
-    Mecanum.Processing_Place_Order = lrc;
-    Mecanum.Processing_Grab_Order = rlc;
-    Mecanum.Finish_Order = rlc;
+    Mecanum.Place_Order = lrc;
     Init_flag = MY_TRUE;
 }
 
@@ -52,11 +52,7 @@ void Kinematic_Analysis(float Vx,float Vy,float Vz)
     Mecanum.Target_A = -Vx+Vy-Vz*(a_PARAMETER+b_PARAMETER) + Mecanum.Gyro_K*mpu6050.Gyro.z;
     Mecanum.Target_B = +Vx+Vy-Vz*(a_PARAMETER+b_PARAMETER) + Mecanum.Gyro_K*mpu6050.Gyro.z;
     Mecanum.Target_C = -Vx+Vy+Vz*(a_PARAMETER+b_PARAMETER) - Mecanum.Gyro_K*mpu6050.Gyro.z;
-	Mecanum.Target_D = +Vx+Vy+Vz*(a_PARAMETER+b_PARAMETER) - Mecanum.Gyro_K*mpu6050.Gyro.z;
-//  Mecanum.Target_A = -Vx+Vy-Vz*(a_PARAMETER+b_PARAMETER);
-//  Mecanum.Target_B = +Vx+Vy-Vz*(a_PARAMETER+b_PARAMETER);
-//  Mecanum.Target_C = -Vx+Vy+Vz*(a_PARAMETER+b_PARAMETER);
-//	Mecanum.Target_D = +Vx+Vy+Vz*(a_PARAMETER+b_PARAMETER);
+	Mecanum.Target_D = +Vx+Vy+Vz*(a_PARAMETER+b_PARAMETER) - Mecanum.Gyro_K*mpu6050.Gyro.z; 
 }
 
 

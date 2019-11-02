@@ -27,7 +27,6 @@ void OpenMV_Read_Grab(void) {         //读取二维码
     u2_printf("OK\r\n");
     delay_ms(5);
     u2_printf("EW\r\n");
-    delay_ms(1000);
 }
 
 
@@ -35,7 +34,7 @@ void OpenMV_Read_Grab(void) {         //读取二维码
 //Openmv 数据接收处理
 void OpenMV_Data_Handle(vu8 * data_buf)
 {
-    static u8 Color = 1;              //从右往左的摆放顺序
+    static u8 Color = 0;              //从右往左的摆放顺序
     static u8 Grab = 0;               //颜色的抓取顺序
     if(data_buf[0] == 'W'){
         if(data_buf[1]=='1'&&data_buf[2]=='2'&&data_buf[3]=='3') {Color = rgb; Mecanum.Color = RGB; Mecanum.color_order_ready = MY_TRUE;}
@@ -64,6 +63,10 @@ void OpenMV_Data_Handle(vu8 * data_buf)
         }
         Color = 0;
         Grab = 0;
+    } else if(data_buf[0]=='4'){
+        Beep_Play(500);
+        delay_ms(500);
+        
     }
     
     //memset(data_buf, 0, len);

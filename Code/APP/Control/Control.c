@@ -34,7 +34,7 @@ Flag Init_flag = MY_TRUE; //初始化标志位
 u8 step=0;                //当前搬运第几个五块
 u8 order[3];              //搬运顺序
 float Target_Velocity = 0;//小车目标速度
-#define Z -2.35           //抵消小车的轴向旋转
+#define Z -2.32           //抵消小车的轴向旋转
 /************************************************************************
 Car Control
 ************************************************************************/
@@ -62,30 +62,29 @@ void scan_control(void) {
     static u8 Flag_Run=0;
     
     if(Flag_Run == 0) {                     //边跑边检测颜色
-        if(Init_flag == MY_TRUE) {
+        goToXY_control(posScanQR1.x,posScanQR2.y, &Flag_Run);
+    } else if(Flag_Run == 1) {
+        if(Init_flag == MY_TRUE&&Mecanum.X_Length>60) {
             move_hand(move_scan_color);           //伸手检测颜色
             OpenMV_Read_Color();
             Init_flag = MY_FALSE;
         }
-        goToXY_control(posScanQR1.x,posScanQR2.y, &Flag_Run);
-    } else if(Flag_Run == 1) {
-        Init_flag = MY_TRUE;
+        
         goToXY_control(posScanQR2.x,posScanQR2.y, &Flag_Run);
     } else if(Flag_Run == 2) {
-        if(Init_flag == MY_TRUE){
-            move_hand(move_scan_grab);            //伸手准备扫二维码
-            Init_flag = MY_FALSE;
-        }
+        Init_flag = MY_TRUE;
         goToXY_control(posScanQR3.x,posScanQR3.y, &Flag_Run);
     } else if(Flag_Run == 3) {
+        move_hand(move_scan_grab);            //伸手准备扫二维码
+        Flag_Run++;
+    } else if(Flag_Run == 4) {
         Init_flag = MY_TRUE;
         stop_control(&Flag_Run);                  //停车
-    } else if(Flag_Run == 4) {
+    } else if(Flag_Run == 5) {
         if(Init_flag == MY_TRUE){
             OpenMV_Read_Grab();                   //扫码
             Init_flag = MY_FALSE;
         }
-        
         if(Mecanum.grab_order_ready == MY_TRUE) { //扫到了
             Flag_Run++;
             move_hand(move_ready);
@@ -94,11 +93,11 @@ void scan_control(void) {
             if(left_right_flag == 0){
                 setmotor_pwm(1, 30 + 1885, 1200);
                 delay_ms(1000);
-                left_right_flag =1;
+                left_right_flag = 1;
             }else{
                 setmotor_pwm(1, -30 + 1885, 1200);
                 delay_ms(1000);
-                left_right_flag =0;
+                left_right_flag = 0;
             }
         }
     }
@@ -145,6 +144,7 @@ void goToProcessing_control(void) {
     
     static u8 Flag_Run=0;
 
+
     if(Init_flag == MY_TRUE){
         order_set(order,Mecanum.Place_Order);
         Init_flag = MY_FALSE;
@@ -164,20 +164,16 @@ void goToProcessing_control(void) {
                 break;
         }
     } else if(Flag_Run == 1) {
-        switch(order[step]){
-            case RIGHT:
-                goToXY_control(posProcessR2.x,posProcessR2.y,&Flag_Run);
-                break;
-            case LEFT:
-                goToXY_control(posProcessL2.x,posProcessL2.y,&Flag_Run);
-                break;
-            case CENTER:
-                goToXY_control(posProcessC2.x,posProcessC2.y,&Flag_Run);
-                break;
-        }
+        goToXY_control(Mecanum.X_Length,Mecanum.Y_Length+5,&Flag_Run);
+        if(Mecanum.side_BC>12) Flag_Run++;
     } else if(Flag_Run == 2) {
         stop_control(&Flag_Run);
     } else if(Flag_Run == 3) {
+        goToXY_control(Mecanum.X_Length-5,Mecanum.Y_Length,&Flag_Run);
+        if(Mecanum.side_AB>12) Flag_Run++;
+    } else if(Flag_Run == 4) {
+        stop_control(&Flag_Run);
+    } else if(Flag_Run == 5) {
         Mecanum.state = placeToProcessing;
         Flag_Run = 0;
         step++;
@@ -221,7 +217,7 @@ void backToProcessing_control(void) {
     
     static u8 Flag_Run = 0;
     if(Init_flag == MY_TRUE){
-        order_set(order,Mecanum.Departure_Order);
+        order_set(order,Mecanum.Place_Order);
         turn_hand(turn_processing);
         Init_flag = MY_FALSE;
     }
@@ -239,20 +235,17 @@ void backToProcessing_control(void) {
                 break;
         }
     } else if(Flag_Run == 1) {
-        switch(order[step]){
-            case RIGHT:
-                goToXY_control(posProcessR2.x,posProcessR2.y,&Flag_Run);  //有问题！！
-                break;
-            case LEFT:
-                goToXY_control(posProcessL2.x,posProcessL2.y,&Flag_Run);
-                break;
-            case CENTER:
-                goToXY_control(posProcessC2.x,posProcessC2.y,&Flag_Run);
-                break;
-        }
+        goToXY_control(Mecanum.X_Length,Mecanum.Y_Length+5,&Flag_Run);
+        if(Mecanum.side_BC>12) Flag_Run++;
     } else if(Flag_Run == 2) {
         stop_control(&Flag_Run);
     } else if(Flag_Run == 3) {
+        //Track_Read();
+        goToXY_control(Mecanum.X_Length-5,Mecanum.Y_Length,&Flag_Run);
+        if(Mecanum.side_AB>12) Flag_Run++;
+    } else if(Flag_Run == 4) {
+        stop_control(&Flag_Run);
+    } else if(Flag_Run == 5) {
         Mecanum.state = grabFromProcessing;
         Flag_Run = 0;
     }
@@ -288,11 +281,20 @@ void goToFinish_control(void) {
                 break;
         }
     } else if(Flag_Run == 1) {
-        stop_control(&Flag_Run);
+        goToXY_control(Mecanum.X_Length+5,Mecanum.Y_Length,&Flag_Run);
+        if(Mecanum.side_CD>10) Flag_Run++;
     } else if(Flag_Run == 2) {
+        stop_control(&Flag_Run);
+    } else if(Flag_Run == 3) {
+        //Track_Read();
+        goToXY_control(Mecanum.X_Length,Mecanum.Y_Length-5,&Flag_Run);
+        if(Mecanum.side_DA>10) Flag_Run++;
+    } else if(Flag_Run == 4) {
+        stop_control(&Flag_Run);
+    } else if(Flag_Run == 5) {
         Mecanum.state = placeToFinish;
         Flag_Run = 0;
-        step++;
+        step++;  
     }
 }
 
@@ -319,7 +321,7 @@ void back_control(void) {
     }
     
     if(Flag_Run == 0) {
-        goToXY_control(8,4,&Flag_Run);
+        goToXY_control(4,3,&Flag_Run);
     } else if(Flag_Run == 1) {
         stop_control(&Flag_Run);
     } else if(Flag_Run == 2) {
@@ -331,23 +333,28 @@ void back_control(void) {
 
 static void stop_control(u8 *Flag_Run) {
     
-    static u8 counter=0;
-    if(Mecanum.Encoder_A==0&&Mecanum.Encoder_B==0&&Mecanum.Encoder_C==0&&Mecanum.Encoder_D==0) {
-        counter++;
-        if(counter==10){
-            counter = 0;
-            MOTO_A_Set(0);
-            MOTO_B_Set(0);
-            MOTO_C_Set(0);
-            MOTO_D_Set(0);
-            (*Flag_Run)++;
-        }
-    } else {
-        counter = 0;
-        Kinematic_Analysis(0,0,Z);           //小车运动学分析
-        pid_setup_mecanum_speed();           //小车各轮子速度期望
-        pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);   //pid控制
-    }
+//    static u8 counter=0;
+//    if(Mecanum.Encoder_A==0&&Mecanum.Encoder_B==0&&Mecanum.Encoder_C==0&&Mecanum.Encoder_D==0) {
+//        counter++;
+//        if(counter==10){
+//            counter = 0;
+//            MOTO_A_Set(0);
+//            MOTO_B_Set(0);
+//            MOTO_C_Set(0);
+//            MOTO_D_Set(0);
+//            (*Flag_Run)++;
+//        }
+//    } else {
+//        counter = 0;
+//        Kinematic_Analysis(0,0,Z);           //小车运动学分析
+//        pid_setup_mecanum_speed();           //小车各轮子速度期望
+//        pid_ctr_mecanum_speed(Mecanum.Encoder_A,Mecanum.Encoder_B,Mecanum.Encoder_C,Mecanum.Encoder_D);   //pid控制
+//    }
+    MOTO_A_Set(0);
+    MOTO_B_Set(0);
+    MOTO_C_Set(0);
+    MOTO_D_Set(0);
+    (*Flag_Run)++;
 }
 
 static void order_set(u8 *order,enum Order_Set nowOrder) {
@@ -383,10 +390,16 @@ static void goToXY_control(int16_t x,int16_t y,u8 *Flag_Run) {
     if(Target_Velocity>Mecanum.RC_Velocity) Mecanum.RC_Velocity+=0.5f;
         else if(Target_Velocity<Mecanum.RC_Velocity) Mecanum.RC_Velocity=Target_Velocity;
     
+    
     Mecanum.Move_X = Mecanum.RC_Velocity*Dx/D;
     Mecanum.Move_Y = Mecanum.RC_Velocity*Dy/D;
     Mecanum.Move_Z = Z;
     
+    if(*Flag_Run == 1&& Mecanum.state == scan) {
+        Mecanum.Move_X = Mecanum.RC_Velocity*Dx/D*0.35f;
+        Mecanum.Move_Y = Mecanum.RC_Velocity*Dy/D*0.35f;
+        Mecanum.Move_Z = Z;
+    }
     
     if(Dy==0 && Dx==0) {
         (*Flag_Run)++;        
@@ -482,8 +495,8 @@ static void move_hand(int16_t *move) {
     //arm1(move[0]);
     //delay_ms(20);
     arm2(move[1]);
-    delay_ms(20);
+    delay_ms(5);
     arm3(move[2]);
-    delay_ms(20);
+    delay_ms(5);
     arm4(move[3]);
 }

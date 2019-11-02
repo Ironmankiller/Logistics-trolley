@@ -179,11 +179,14 @@ void Display_Mecanum()
     OLED_ShowNumber(90,30,Mecanum.Y_Length,3,12);
     
     //=============第4显示当前位置坐标===============//
-    OLED_ShowString(0,40,"BC:");
-    OLED_ShowNumber(30,40,Mecanum.side_BC,2,12);
-    OLED_ShowString(60,40,"CD:");
-    OLED_ShowNumber(90,40,Mecanum.side_CD,2,12);
-    
+    OLED_ShowString(0,40,"AB:");
+    OLED_ShowNumber(20,40,Mecanum.side_AB,2,12);
+    OLED_ShowString(40,40,"BC:");
+    OLED_ShowNumber(60,40,Mecanum.side_BC,2,12);
+    OLED_ShowString(80,40,"CD:");
+    OLED_ShowNumber(100,40,Mecanum.side_CD,2,12);
+    OLED_ShowString(0,50,"DA:");
+    OLED_ShowNumber(20,50,Mecanum.side_DA,2,12);
     //=============刷新=======================//
 	OLED_Refresh_Gram();	
 	}

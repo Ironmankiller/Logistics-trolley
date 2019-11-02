@@ -201,6 +201,7 @@ __INLINE static void Task_20ms(void)
 {
     /* PS2 */
     //Remote();
+    Track_Read();
     //u1_printf("X:%d\tY:%d\r\n",Mecanum.X_Length,Mecanum.Y_Length);
     /* 发送传感器参数到上位机 */
 //    ANO_DT_Send_Senser(
@@ -225,12 +226,12 @@ __INLINE static void Task_50ms(void)
     LED_Blink(LED_1);
 
     /* 显示 */
-    Track_Read();
+    
     Display_Mecanum();
     //Display_TIME();
     
     //HC165_Show();
-      //  Track_Read();
+    //Track_Read();
     //u2_printf("AB=%.2f\tBC=%.2f\tCD=%.2f\tDA=%.2f\r\n",Mecanum.side_AB,Mecanum.side_BC,Mecanum.side_CD,Mecanum.side_DA);
     //u2_printf("x=%d\ty=%d\r\n",Mecanum.X_Length,Mecanum.Y_Length);
     
@@ -242,16 +243,26 @@ __INLINE static void Task_50ms(void)
         break;
     case 3:
         LED_SWITCH(LED_2);
+        u2_printf("1\r\n");
         break;
     case 4:
-        //Mecanum.state = goToDeparture;
-        arm2(-35);
+//        Mecanum.state = goToProcessing;
+        arm1(90);
+        delay_ms(1000);
+        arm2(25);
         delay_ms(20);
-        arm3(20);
+        arm3(25);
         delay_ms(20);
-        OpenMV_Read_Color();
+        arm4(45);
+//        OpenMV_Read_Color();
+//        delay_ms(20);
+//        arm4(45);
+//        delay_ms(20);
+//        OpenMV_Read_Color();
+        //setmotor_pwm(1, 2500, 1000);
         LED_SWITCH(LED_3);
         break;
+
     case 5:
         Mecanum.state = scan;
 		LED_SWITCH(LED_4);

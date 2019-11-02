@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\NUEDC_2017.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\NUEDC_2017.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Fri Nov 01 13:41:15 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Fri Nov 01 21:18:27 2019
 <BR><P>
 <H3>Maximum Stack Usage =        348 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -418,7 +418,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[155]"></a>strlen</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, strlen.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
+<BR><BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
 </UL>
 
 <P><STRONG><a name="[67]"></a>__aeabi_dadd</STRONG> (Thumb, 322 bytes, Stack size 48 bytes, dadd.o(.text))
@@ -431,10 +431,10 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_infnan
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 <LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_atan
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_infnan
 </UL>
 
 <P><STRONG><a name="[6c]"></a>__aeabi_dsub</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, dadd.o(.text))
@@ -460,10 +460,10 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ahrs
+<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_underflow
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 <LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_atan
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
-<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_underflow
 </UL>
 
 <P><STRONG><a name="[6f]"></a>__aeabi_ddiv</STRONG> (Thumb, 222 bytes, Stack size 32 bytes, ddiv.o(.text))
@@ -638,11 +638,11 @@ Global Symbols
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Encoder_Init_TIM5
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Encoder_Init_TIM4
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Encoder_Init_TIM3
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beep_Play
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beep_Init
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beep_Play
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Track_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_Init
+<BR>[Called By]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_Init
 </UL>
 
 <P><STRONG><a name="[8b]"></a>Beep_Init</STRONG> (Thumb, 150 bytes, Stack size 48 bytes, beep.o(i.Beep_Init))
@@ -667,6 +667,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Init
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Data_Handle
 </UL>
 
 <P><STRONG><a name="[5]"></a>BusFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.BusFault_Handler))
@@ -677,7 +678,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Cycle_T
 </UL>
-<BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_Init
+<BR>[Called By]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_Init
 </UL>
 
 <P><STRONG><a name="[8]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.DebugMon_Handler))
@@ -692,14 +693,14 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HardFault_Handler
 </UL>
 
-<P><STRONG><a name="[b0]"></a>Display_Mecanum</STRONG> (Thumb, 562 bytes, Stack size 8 bytes, display.o(i.Display_Mecanum))
+<P><STRONG><a name="[b0]"></a>Display_Mecanum</STRONG> (Thumb, 638 bytes, Stack size 8 bytes, display.o(i.Display_Mecanum))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = Display_Mecanum &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowNumber
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Refresh_Gram
 </UL>
-<BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
+<BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
 </UL>
 
 <P><STRONG><a name="[33]"></a>EXTI15_10_IRQHandler</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, exti.o(i.EXTI15_10_IRQHandler))
@@ -868,7 +869,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HC165_delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Track_Read
+<BR>[Called By]<UL><LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Track_Read
 </UL>
 
 <P><STRONG><a name="[c1]"></a>HC165_delay</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, 74hc165.o(i.HC165_delay))
@@ -876,7 +877,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
-<BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Track_Read
+<BR>[Called By]<UL><LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Track_Read
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HC165_Read_2Byte
 </UL>
 
@@ -1038,7 +1039,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[122]"></a>KEY_Scan</STRONG> (Thumb, 128 bytes, Stack size 0 bytes, key.o(i.KEY_Scan))
-<BR><BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
+<BR><BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
 </UL>
 
 <P><STRONG><a name="[146]"></a>Kalman_Filter1</STRONG> (Thumb, 572 bytes, Stack size 0 bytes, ahrs.o(i.Kalman_Filter1))
@@ -1049,11 +1050,10 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ahrs
 </UL>
 
-<P><STRONG><a name="[f9]"></a>Kinematic_Analysis</STRONG> (Thumb, 156 bytes, Stack size 0 bytes, mecanum.o(i.Kinematic_Analysis))
-<BR><BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stop_control
-<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToXY_control
-<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ready_control
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PS2_Usart_Control
+<P><STRONG><a name="[fa]"></a>Kinematic_Analysis</STRONG> (Thumb, 156 bytes, Stack size 0 bytes, mecanum.o(i.Kinematic_Analysis))
+<BR><BR>[Called By]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToXY_control
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ready_control
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PS2_Usart_Control
 </UL>
 
 <P><STRONG><a name="[a0]"></a>LED_ALL_OFF</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, led.o(i.LED_ALL_OFF))
@@ -1070,7 +1070,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_ON
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_OFF
 </UL>
-<BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
+<BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
 </UL>
 
 <P><STRONG><a name="[89]"></a>LED_Init</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, led.o(i.LED_Init))
@@ -1092,16 +1092,16 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b4]"></a>LED_SWITCH</STRONG> (Thumb, 134 bytes, Stack size 0 bytes, led.o(i.LED_SWITCH))
-<BR><BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
+<BR><BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI15_10_IRQHandler
 </UL>
 
-<P><STRONG><a name="[104]"></a>Loop_Time_Check</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, task_loop.o(i.Loop_Time_Check))
+<P><STRONG><a name="[105]"></a>Loop_Time_Check</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, task_loop.o(i.Loop_Time_Check))
 <BR><BR>[Called By]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
-<P><STRONG><a name="[109]"></a>Loop_Time_Clear</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, task_loop.o(i.Loop_Time_Clear))
-<BR><BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_Init
+<P><STRONG><a name="[10a]"></a>Loop_Time_Clear</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, task_loop.o(i.Loop_Time_Clear))
+<BR><BR>[Called By]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_Init
 </UL>
 
 <P><STRONG><a name="[95]"></a>MOTO_A_Init</STRONG> (Thumb, 196 bytes, Stack size 48 bytes, moto_drive.o(i.MOTO_A_Init))
@@ -1337,13 +1337,13 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_Init
+<BR>[Called By]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_Init
 </UL>
 
-<P><STRONG><a name="[113]"></a>Mecanum_Update</STRONG> (Thumb, 166 bytes, Stack size 8 bytes, mecanum.o(i.Mecanum_Update))
+<P><STRONG><a name="[114]"></a>Mecanum_Update</STRONG> (Thumb, 166 bytes, Stack size 8 bytes, mecanum.o(i.Mecanum_Update))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Mecanum_Update
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
 <P><STRONG><a name="[4]"></a>MemManage_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.MemManage_Handler))
@@ -1437,35 +1437,39 @@ Global Symbols
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 </UL>
 
-<P><STRONG><a name="[12c]"></a>OpenMV_Data_Handle</STRONG> (Thumb, 922 bytes, Stack size 0 bytes, openmv_1.o(i.OpenMV_Data_Handle))
-<BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART2_IRQHandler
+<P><STRONG><a name="[f5]"></a>OpenMV_Data_Handle</STRONG> (Thumb, 952 bytes, Stack size 8 bytes, openmv_1.o(i.OpenMV_Data_Handle))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = OpenMV_Data_Handle &rArr; Beep_Play &rArr; delay_ms &rArr; delay_us
+</UL>
+<BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beep_Play
+</UL>
+<BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART2_IRQHandler
 </UL>
 
-<P><STRONG><a name="[f5]"></a>OpenMV_Read_Color</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, openmv_1.o(i.OpenMV_Read_Color))
+<P><STRONG><a name="[f6]"></a>OpenMV_Read_Color</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, openmv_1.o(i.OpenMV_Read_Color))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = OpenMV_Read_Color &rArr; u2_printf &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
-<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
+<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
-<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
+<BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
 </UL>
 
-<P><STRONG><a name="[f7]"></a>OpenMV_Read_Grab</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, openmv_1.o(i.OpenMV_Read_Grab))
+<P><STRONG><a name="[f8]"></a>OpenMV_Read_Grab</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, openmv_1.o(i.OpenMV_Read_Grab))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = OpenMV_Read_Grab &rArr; u2_printf &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
-<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
+<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
+<BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
 </UL>
 
-<P><STRONG><a name="[f8]"></a>PS2_Usart_Control</STRONG> (Thumb, 228 bytes, Stack size 8 bytes, mecanum.o(i.PS2_Usart_Control))
+<P><STRONG><a name="[f9]"></a>PS2_Usart_Control</STRONG> (Thumb, 228 bytes, Stack size 8 bytes, mecanum.o(i.PS2_Usart_Control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = PS2_Usart_Control
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Kinematic_Analysis
+<BR>[Calls]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Kinematic_Analysis
 </UL>
-<BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ready_control
+<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ready_control
 </UL>
 
 <P><STRONG><a name="[e2]"></a>Param_SaveAccelOffset</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, sensor_param.o(i.Param_SaveAccelOffset))
@@ -1536,69 +1540,69 @@ Global Symbols
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Init
 </UL>
 
-<P><STRONG><a name="[fa]"></a>Read_Encoder</STRONG> (Thumb, 116 bytes, Stack size 16 bytes, encoder.o(i.Read_Encoder))
+<P><STRONG><a name="[fb]"></a>Read_Encoder</STRONG> (Thumb, 116 bytes, Stack size 16 bytes, encoder.o(i.Read_Encoder))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Read_Encoder
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetCounter
+<BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetCounter
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
-<P><STRONG><a name="[fc]"></a>STMFLASH_EraseSector</STRONG> (Thumb, 106 bytes, Stack size 16 bytes, stmflash.o(i.STMFLASH_EraseSector))
+<P><STRONG><a name="[fd]"></a>STMFLASH_EraseSector</STRONG> (Thumb, 106 bytes, Stack size 16 bytes, stmflash.o(i.STMFLASH_EraseSector))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = STMFLASH_EraseSector &rArr; STMFLASH_WaitDone &rArr; delay_us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_WaitDone
+<BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_WaitDone
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write
 </UL>
 
-<P><STRONG><a name="[101]"></a>STMFLASH_GetFlashSector</STRONG> (Thumb, 116 bytes, Stack size 0 bytes, stmflash.o(i.STMFLASH_GetFlashSector))
+<P><STRONG><a name="[102]"></a>STMFLASH_GetFlashSector</STRONG> (Thumb, 116 bytes, Stack size 0 bytes, stmflash.o(i.STMFLASH_GetFlashSector))
 <BR><BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write
 </UL>
 
-<P><STRONG><a name="[fe]"></a>STMFLASH_GetStatus</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, stmflash.o(i.STMFLASH_GetStatus))
-<BR><BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_WaitDone
+<P><STRONG><a name="[ff]"></a>STMFLASH_GetStatus</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, stmflash.o(i.STMFLASH_GetStatus))
+<BR><BR>[Called By]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_WaitDone
 </UL>
 
-<P><STRONG><a name="[103]"></a>STMFLASH_Lock</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, stmflash.o(i.STMFLASH_Lock))
+<P><STRONG><a name="[104]"></a>STMFLASH_Lock</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, stmflash.o(i.STMFLASH_Lock))
 <BR><BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write
 </UL>
 
-<P><STRONG><a name="[100]"></a>STMFLASH_ReadWord</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stmflash.o(i.STMFLASH_ReadWord))
+<P><STRONG><a name="[101]"></a>STMFLASH_ReadWord</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stmflash.o(i.STMFLASH_ReadWord))
 <BR><BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write
 </UL>
 
-<P><STRONG><a name="[ff]"></a>STMFLASH_Unlock</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stmflash.o(i.STMFLASH_Unlock))
+<P><STRONG><a name="[100]"></a>STMFLASH_Unlock</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stmflash.o(i.STMFLASH_Unlock))
 <BR><BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write
 </UL>
 
-<P><STRONG><a name="[fd]"></a>STMFLASH_WaitDone</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, stmflash.o(i.STMFLASH_WaitDone))
+<P><STRONG><a name="[fe]"></a>STMFLASH_WaitDone</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, stmflash.o(i.STMFLASH_WaitDone))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = STMFLASH_WaitDone &rArr; delay_us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_GetStatus
+<BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_GetStatus
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
-<BR>[Called By]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_WriteWord
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_EraseSector
+<BR>[Called By]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_WriteWord
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_EraseSector
 </UL>
 
 <P><STRONG><a name="[bd]"></a>STMFLASH_Write</STRONG> (Thumb, 154 bytes, Stack size 32 bytes, stmflash.o(i.STMFLASH_Write))
 <BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = STMFLASH_Write &rArr; STMFLASH_WriteWord &rArr; STMFLASH_WaitDone &rArr; delay_us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_WriteWord
-<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Unlock
-<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_ReadWord
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Lock
-<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_GetFlashSector
-<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_EraseSector
+<BR>[Calls]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_WriteWord
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Unlock
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_ReadWord
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Lock
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_GetFlashSector
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_EraseSector
 </UL>
 <BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Flash_SavePID
 </UL>
 
-<P><STRONG><a name="[102]"></a>STMFLASH_WriteWord</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, stmflash.o(i.STMFLASH_WriteWord))
+<P><STRONG><a name="[103]"></a>STMFLASH_WriteWord</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, stmflash.o(i.STMFLASH_WriteWord))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = STMFLASH_WriteWord &rArr; STMFLASH_WaitDone &rArr; delay_us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_WaitDone
+<BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_WaitDone
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_Write
 </UL>
@@ -1606,22 +1610,22 @@ Global Symbols
 <P><STRONG><a name="[7]"></a>SVC_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.SVC_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f40_41xxx.o(RESET)
 </UL>
-<P><STRONG><a name="[106]"></a>SysTick_CLKSourceConfig</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, misc.o(i.SysTick_CLKSourceConfig))
+<P><STRONG><a name="[107]"></a>SysTick_CLKSourceConfig</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, misc.o(i.SysTick_CLKSourceConfig))
 <BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
 </UL>
 
 <P><STRONG><a name="[a]"></a>SysTick_Handler</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, systick.o(i.SysTick_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SysTick_Handler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Loop_Time_Check
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_Time_Running
+<BR>[Calls]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Loop_Time_Check
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_Time_Running
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f40_41xxx.o(RESET)
 </UL>
 <P><STRONG><a name="[88]"></a>SysTick_Init</STRONG> (Thumb, 98 bytes, Stack size 32 bytes, systick.o(i.SysTick_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = SysTick_Init &rArr; RCC_GetClocksFreq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_CLKSourceConfig
+<BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_CLKSourceConfig
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetClocksFreq
 </UL>
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Init
@@ -1630,7 +1634,7 @@ Global Symbols
 <P><STRONG><a name="[5e]"></a>SystemInit</STRONG> (Thumb, 88 bytes, Stack size 8 bytes, system_stm32f4xx.o(i.SystemInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = SystemInit &rArr; SetSysClock
 </UL>
-<BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+<BR>[Calls]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f40_41xxx.o(.text)
 </UL>
@@ -1638,7 +1642,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Init
 </UL>
 
-<P><STRONG><a name="[105]"></a>System_Time_Running</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, time.o(i.System_Time_Running))
+<P><STRONG><a name="[106]"></a>System_Time_Running</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, time.o(i.System_Time_Running))
 <BR><BR>[Called By]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
@@ -1678,21 +1682,21 @@ Global Symbols
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Encoder_Init_TIM3
 </UL>
 
-<P><STRONG><a name="[fb]"></a>TIM_GetCounter</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_tim.o(i.TIM_GetCounter))
-<BR><BR>[Called By]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_Encoder
+<P><STRONG><a name="[fc]"></a>TIM_GetCounter</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_tim.o(i.TIM_GetCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_Encoder
 </UL>
 
 <P><STRONG><a name="[b9]"></a>TIM_ICInit</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, stm32f4xx_tim.o(i.TIM_ICInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = TIM_ICInit &rArr; TI4_Config
 </UL>
-<BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TI4_Config
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TI3_Config
-<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TI2_Config
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TI1_Config
-<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetIC4Prescaler
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetIC3Prescaler
-<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetIC2Prescaler
-<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetIC1Prescaler
+<BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TI4_Config
+<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TI3_Config
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TI2_Config
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TI1_Config
+<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetIC4Prescaler
+<LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetIC3Prescaler
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetIC2Prescaler
+<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_SetIC1Prescaler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Encoder_Init_TIM8
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Encoder_Init_TIM5
@@ -1763,19 +1767,19 @@ Global Symbols
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Encoder_Init_TIM3
 </UL>
 
-<P><STRONG><a name="[10b]"></a>TIM_SetIC1Prescaler</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f4xx_tim.o(i.TIM_SetIC1Prescaler))
+<P><STRONG><a name="[10c]"></a>TIM_SetIC1Prescaler</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f4xx_tim.o(i.TIM_SetIC1Prescaler))
 <BR><BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ICInit
 </UL>
 
-<P><STRONG><a name="[10d]"></a>TIM_SetIC2Prescaler</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f4xx_tim.o(i.TIM_SetIC2Prescaler))
+<P><STRONG><a name="[10e]"></a>TIM_SetIC2Prescaler</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f4xx_tim.o(i.TIM_SetIC2Prescaler))
 <BR><BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ICInit
 </UL>
 
-<P><STRONG><a name="[10f]"></a>TIM_SetIC3Prescaler</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f4xx_tim.o(i.TIM_SetIC3Prescaler))
+<P><STRONG><a name="[110]"></a>TIM_SetIC3Prescaler</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f4xx_tim.o(i.TIM_SetIC3Prescaler))
 <BR><BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ICInit
 </UL>
 
-<P><STRONG><a name="[111]"></a>TIM_SetIC4Prescaler</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f4xx_tim.o(i.TIM_SetIC4Prescaler))
+<P><STRONG><a name="[112]"></a>TIM_SetIC4Prescaler</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f4xx_tim.o(i.TIM_SetIC4Prescaler))
 <BR><BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ICInit
 </UL>
 
@@ -1798,17 +1802,18 @@ Global Symbols
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Encoder_Init_TIM3
 </UL>
 
-<P><STRONG><a name="[123]"></a>Task_Loop</STRONG> (Thumb, 160 bytes, Stack size 16 bytes, task_loop.o(i.Task_Loop))
+<P><STRONG><a name="[123]"></a>Task_Loop</STRONG> (Thumb, 164 bytes, Stack size 16 bytes, task_loop.o(i.Task_Loop))
 <BR><BR>[Stack]<UL><LI>Max Depth = 348<LI>Call Chain = Task_Loop &rArr; ANO_DT_Do &rArr; ANO_DT_Data_Receive_Anl &rArr; Argument_Init &rArr; Flash_SavePID &rArr; STMFLASH_Write &rArr; STMFLASH_WriteWord &rArr; STMFLASH_WaitDone &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ahrs
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Track_Read
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_Read
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_Data_Prepare
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HMI_Data_Handle
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Cycle_T
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ANO_DT_Do
-<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
-<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
+<LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1821,14 +1826,14 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Init
 </UL>
 
-<P><STRONG><a name="[121]"></a>Track_Read</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, track.o(i.Track_Read))
-<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = Track_Read &rArr; HC165_Read_2Byte &rArr; HC165_delay &rArr; delay_us
+<P><STRONG><a name="[126]"></a>Track_Read</STRONG> (Thumb, 216 bytes, Stack size 24 bytes, track.o(i.Track_Read))
+<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = Track_Read &rArr; HC165_Read_2Byte &rArr; HC165_delay &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HC165_delay
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HC165_Read_2Byte
-<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;findNum
+<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;findNum
 </UL>
-<BR>[Called By]<UL><LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
+<BR>[Called By]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_Loop
 </UL>
 
 <P><STRONG><a name="[e5]"></a>Transform</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, mpu6050.o(i.Transform))
@@ -1838,9 +1843,9 @@ Global Symbols
 <P><STRONG><a name="[3f]"></a>UART4_IRQHandler</STRONG> (Thumb, 156 bytes, Stack size 8 bytes, hmi.o(i.UART4_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = UART4_IRQHandler &rArr; __2sprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
-<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
-<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<BR>[Calls]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
+<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f40_41xxx.o(RESET)
@@ -1848,27 +1853,27 @@ Global Symbols
 <P><STRONG><a name="[40]"></a>UART5_IRQHandler</STRONG> (Thumb, 150 bytes, Stack size 8 bytes, tf_min.o(i.UART5_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = UART5_IRQHandler &rArr; USART_GetITStatus
 </UL>
-<BR>[Calls]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetITStatus
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
+<BR>[Calls]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
+<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetITStatus
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f40_41xxx.o(RESET)
 </UL>
 <P><STRONG><a name="[30]"></a>USART1_IRQHandler</STRONG> (Thumb, 180 bytes, Stack size 8 bytes, printf_uart.o(i.USART1_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = USART1_IRQHandler &rArr; USART_GetITStatus
 </UL>
-<BR>[Calls]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetITStatus
+<BR>[Calls]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
+<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetITStatus
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f40_41xxx.o(RESET)
 </UL>
 <P><STRONG><a name="[31]"></a>USART2_IRQHandler</STRONG> (Thumb, 150 bytes, Stack size 8 bytes, usart2.o(i.USART2_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = USART2_IRQHandler
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = USART2_IRQHandler &rArr; OpenMV_Data_Handle &rArr; Beep_Play &rArr; delay_ms &rArr; delay_us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
-<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
-<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Data_Handle
+<BR>[Calls]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Data_Handle
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f40_41xxx.o(RESET)
@@ -1876,13 +1881,13 @@ Global Symbols
 <P><STRONG><a name="[32]"></a>USART3_IRQHandler</STRONG> (Thumb, 150 bytes, Stack size 8 bytes, tf_min.o(i.USART3_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = USART3_IRQHandler &rArr; USART_GetITStatus
 </UL>
-<BR>[Calls]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
-<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetITStatus
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
+<BR>[Calls]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
+<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetITStatus
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f40_41xxx.o(RESET)
 </UL>
-<P><STRONG><a name="[12b]"></a>USART_ClearFlag</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f4xx_usart.o(i.USART_ClearFlag))
+<P><STRONG><a name="[12c]"></a>USART_ClearFlag</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f4xx_usart.o(i.USART_ClearFlag))
 <BR><BR>[Called By]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart2_init
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
@@ -1906,15 +1911,15 @@ Global Symbols
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart3_init
 </UL>
 
-<P><STRONG><a name="[127]"></a>USART_GetFlagStatus</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f4xx_usart.o(i.USART_GetFlagStatus))
-<BR><BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_IRQHandler
-<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
+<P><STRONG><a name="[128]"></a>USART_GetFlagStatus</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f4xx_usart.o(i.USART_GetFlagStatus))
+<BR><BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
+<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_IRQHandler
 <LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_SendString
 <LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_SendByte
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART2_IRQHandler
 </UL>
 
-<P><STRONG><a name="[12a]"></a>USART_GetITStatus</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, stm32f4xx_usart.o(i.USART_GetITStatus))
+<P><STRONG><a name="[12b]"></a>USART_GetITStatus</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, stm32f4xx_usart.o(i.USART_GetITStatus))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = USART_GetITStatus
 </UL>
 <BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
@@ -1942,7 +1947,7 @@ Global Symbols
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usart1_init
 </UL>
 
-<P><STRONG><a name="[128]"></a>USART_ReceiveData</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f4xx_usart.o(i.USART_ReceiveData))
+<P><STRONG><a name="[129]"></a>USART_ReceiveData</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f4xx_usart.o(i.USART_ReceiveData))
 <BR><BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_IRQHandler
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART2_IRQHandler
@@ -1951,7 +1956,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[132]"></a>USART_SendData</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f4xx_usart.o(i.USART_SendData))
-<BR><BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
+<BR><BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
 <LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_SendByte
 </UL>
 
@@ -1962,7 +1967,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Usart_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
-<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
 </UL>
 <BR>[Called By]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_SendString
 </UL>
@@ -1970,7 +1975,7 @@ Global Symbols
 <P><STRONG><a name="[133]"></a>Usart_SendString</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, usart2.o(i.Usart_SendString))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Usart_SendString &rArr; Usart_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
+<BR>[Calls]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
 <LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_SendByte
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setmotor_pwm
@@ -1999,7 +2004,7 @@ Global Symbols
 
 <P><STRONG><a name="[170]"></a>__1sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
 
-<P><STRONG><a name="[129]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf))
+<P><STRONG><a name="[12a]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setmotor_pwm
@@ -2024,7 +2029,7 @@ Global Symbols
 <P><STRONG><a name="[154]"></a>vsprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0vsprintf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = vsprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
+<BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
 </UL>
 
 <P><STRONG><a name="[13a]"></a>__ARM_fpclassify</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, fpclassify.o(i.__ARM_fpclassify))
@@ -2041,11 +2046,11 @@ Global Symbols
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_underflow
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_infnan
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fabs
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 <LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_fpclassify
-<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_underflow
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_infnan
 </UL>
 <BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ahrs
 </UL>
@@ -2108,17 +2113,17 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_Loop
 </UL>
 
-<P><STRONG><a name="[11a]"></a>backToDeparture_control</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, control.o(i.backToDeparture_control))
+<P><STRONG><a name="[11b]"></a>backToDeparture_control</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, control.o(i.backToDeparture_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = backToDeparture_control &rArr; goToXY_control &rArr; __hardfp_sqrt &rArr; _dsqrt &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;turn_hand
 <LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stop_control
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToXY_control
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
-<P><STRONG><a name="[11e]"></a>backToProcessing_control</STRONG> (Thumb, 242 bytes, Stack size 8 bytes, control.o(i.backToProcessing_control))
+<P><STRONG><a name="[11f]"></a>backToProcessing_control</STRONG> (Thumb, 292 bytes, Stack size 8 bytes, control.o(i.backToProcessing_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = backToProcessing_control &rArr; goToXY_control &rArr; __hardfp_sqrt &rArr; _dsqrt &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;turn_hand
@@ -2126,17 +2131,17 @@ Global Symbols
 <LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;order_set
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToXY_control
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
-<P><STRONG><a name="[11f]"></a>back_control</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, control.o(i.back_control))
+<P><STRONG><a name="[120]"></a>back_control</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, control.o(i.back_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = back_control &rArr; goToXY_control &rArr; __hardfp_sqrt &rArr; _dsqrt &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;turn_hand
 <LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stop_control
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToXY_control
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
 <P><STRONG><a name="[90]"></a>delay_ms</STRONG> (Thumb, 26 bytes, Stack size 12 bytes, systick.o(i.delay_ms))
@@ -2148,14 +2153,15 @@ Global Symbols
 <LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;place_hand
 <LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;move_hand
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_hand
-<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Color
-<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Grab
+<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
+<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Grab
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Color
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_Init
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beep_Play
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Init
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beep_Play
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Data_Handle
 <LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HardFault_Handler
 </UL>
 
@@ -2165,7 +2171,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetSysTime_us
 </UL>
 <BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
-<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_WaitDone
+<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STMFLASH_WaitDone
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HC165_delay
 </UL>
 
@@ -2180,16 +2186,16 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> printfa.o(i.__0printf)
 </UL>
-<P><STRONG><a name="[116]"></a>goToDeparture_control</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, control.o(i.goToDeparture_control))
+<P><STRONG><a name="[117]"></a>goToDeparture_control</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, control.o(i.goToDeparture_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = goToDeparture_control &rArr; goToXY_control &rArr; __hardfp_sqrt &rArr; _dsqrt &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stop_control
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToXY_control
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
-<P><STRONG><a name="[11c]"></a>goToFinish_control</STRONG> (Thumb, 166 bytes, Stack size 8 bytes, control.o(i.goToFinish_control))
+<P><STRONG><a name="[11d]"></a>goToFinish_control</STRONG> (Thumb, 302 bytes, Stack size 8 bytes, control.o(i.goToFinish_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = goToFinish_control &rArr; goToXY_control &rArr; __hardfp_sqrt &rArr; _dsqrt &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;turn_hand
@@ -2197,10 +2203,10 @@ Global Symbols
 <LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;order_set
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToXY_control
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
-<P><STRONG><a name="[118]"></a>goToProcessing_control</STRONG> (Thumb, 252 bytes, Stack size 8 bytes, control.o(i.goToProcessing_control))
+<P><STRONG><a name="[119]"></a>goToProcessing_control</STRONG> (Thumb, 300 bytes, Stack size 8 bytes, control.o(i.goToProcessing_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = goToProcessing_control &rArr; goToXY_control &rArr; __hardfp_sqrt &rArr; _dsqrt &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;turn_hand
@@ -2208,31 +2214,31 @@ Global Symbols
 <LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;order_set
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToXY_control
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
-<P><STRONG><a name="[117]"></a>grabFromDeparture_control</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, control.o(i.grabFromDeparture_control))
+<P><STRONG><a name="[118]"></a>grabFromDeparture_control</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, control.o(i.grabFromDeparture_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = grabFromDeparture_control &rArr; grab_hand &rArr; setmotor_pwm &rArr; Usart_SendString &rArr; Usart_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;order_set
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_hand
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
-<P><STRONG><a name="[11b]"></a>grabFromProcessing_control</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, control.o(i.grabFromProcessing_control))
+<P><STRONG><a name="[11c]"></a>grabFromProcessing_control</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, control.o(i.grabFromProcessing_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = grabFromProcessing_control &rArr; grab_hand &rArr; setmotor_pwm &rArr; Usart_SendString &rArr; Usart_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_hand
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
 <P><STRONG><a name="[5d]"></a>main</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 348<LI>Call Chain = main &rArr; Task_Loop &rArr; ANO_DT_Do &rArr; ANO_DT_Data_Receive_Anl &rArr; Argument_Init &rArr; Flash_SavePID &rArr; STMFLASH_Write &rArr; STMFLASH_WriteWord &rArr; STMFLASH_WaitDone &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_Loop
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_Init
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;System_Init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
@@ -2251,9 +2257,8 @@ Global Symbols
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTO_B_Set
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTO_A_Set
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stop_control
-<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToXY_control
-<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ready_control
+<BR>[Called By]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToXY_control
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ready_control
 </UL>
 
 <P><STRONG><a name="[150]"></a>pid_inc_calc</STRONG> (Thumb, 248 bytes, Stack size 0 bytes, pid.o(i.pid_inc_calc))
@@ -2265,39 +2270,38 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;update_pid_param
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stop_control
-<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToXY_control
-<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ready_control
+<BR>[Called By]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToXY_control
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ready_control
 </UL>
 
-<P><STRONG><a name="[11d]"></a>placeToFinish_control</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, control.o(i.placeToFinish_control))
+<P><STRONG><a name="[11e]"></a>placeToFinish_control</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, control.o(i.placeToFinish_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = placeToFinish_control &rArr; place_hand &rArr; setmotor_pwm &rArr; Usart_SendString &rArr; Usart_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;place_hand
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
-<P><STRONG><a name="[119]"></a>placeToProcessing_control</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, control.o(i.placeToProcessing_control))
+<P><STRONG><a name="[11a]"></a>placeToProcessing_control</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, control.o(i.placeToProcessing_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = placeToProcessing_control &rArr; place_hand &rArr; setmotor_pwm &rArr; Usart_SendString &rArr; Usart_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;place_hand
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
-<P><STRONG><a name="[114]"></a>ready_control</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, control.o(i.ready_control))
+<P><STRONG><a name="[115]"></a>ready_control</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, control.o(i.ready_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = ready_control &rArr; pid_ctr_mecanum_speed &rArr; MOTO_D_Set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_setup_mecanum_speed
 <LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_ctr_mecanum_speed
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PS2_Usart_Control
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Kinematic_Analysis
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PS2_Usart_Control
+<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Kinematic_Analysis
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
-<P><STRONG><a name="[115]"></a>scan_control</STRONG> (Thumb, 276 bytes, Stack size 8 bytes, control.o(i.scan_control))
+<P><STRONG><a name="[116]"></a>scan_control</STRONG> (Thumb, 292 bytes, Stack size 8 bytes, control.o(i.scan_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = scan_control &rArr; goToXY_control &rArr; __hardfp_sqrt &rArr; _dsqrt &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stop_control
@@ -2305,24 +2309,24 @@ Global Symbols
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToXY_control
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setmotor_pwm
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Color
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Grab
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Grab
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Color
 </UL>
-<BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_10ms
 </UL>
 
 <P><STRONG><a name="[9d]"></a>setmotor_pwm</STRONG> (Thumb, 32 bytes, Stack size 24 bytes, steer_moto.o(i.setmotor_pwm))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = setmotor_pwm &rArr; Usart_SendString &rArr; Usart_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_SendString
-<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;turn_hand
 <LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;place_hand
 <LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;move_hand
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_hand
-<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
-<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
+<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
+<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Init
 </UL>
 
@@ -2338,16 +2342,17 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u1_putbuff
 </UL>
 
-<P><STRONG><a name="[f6]"></a>u2_printf</STRONG> (Thumb, 72 bytes, Stack size 32 bytes, usart2.o(i.u2_printf))
+<P><STRONG><a name="[f7]"></a>u2_printf</STRONG> (Thumb, 72 bytes, Stack size 32 bytes, usart2.o(i.u2_printf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = u2_printf &rArr; vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
-<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
 <LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vsprintf
 <LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 </UL>
-<BR>[Called By]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Color
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Grab
+<BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Grab
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Color
 </UL>
 
 <P><STRONG><a name="[151]"></a>update_pid_param</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, pid.o(i.update_pid_param))
@@ -2361,7 +2366,7 @@ Global Symbols
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHB1PeriphClockCmd
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinAFConfig
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Init
 <LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Cmd
@@ -2376,7 +2381,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHB1PeriphClockCmd
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinAFConfig
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Init
 <LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Cmd
@@ -2421,34 +2426,33 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[112]"></a>Task_10ms</STRONG> (Thumb, 154 bytes, Stack size 24 bytes, task_loop.o(i.Task_10ms))
+<P><STRONG><a name="[113]"></a>Task_10ms</STRONG> (Thumb, 154 bytes, Stack size 24 bytes, task_loop.o(i.Task_10ms))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = Task_10ms &rArr; scan_control &rArr; goToXY_control &rArr; __hardfp_sqrt &rArr; _dsqrt &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
-<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ready_control
-<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;placeToProcessing_control
-<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;placeToFinish_control
-<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grabFromProcessing_control
-<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grabFromDeparture_control
-<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToProcessing_control
-<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToFinish_control
-<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToDeparture_control
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;back_control
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToProcessing_control
-<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToDeparture_control
-<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_Encoder
-<LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mecanum_Update
+<BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ready_control
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;placeToProcessing_control
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;placeToFinish_control
+<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grabFromProcessing_control
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grabFromDeparture_control
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToProcessing_control
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToFinish_control
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToDeparture_control
+<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;back_control
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToProcessing_control
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToDeparture_control
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_Encoder
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mecanum_Update
 </UL>
 <BR>[Called By]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_Loop
 </UL>
 
-<P><STRONG><a name="[120]"></a>Task_50ms</STRONG> (Thumb, 124 bytes, Stack size 8 bytes, task_loop.o(i.Task_50ms))
+<P><STRONG><a name="[121]"></a>Task_50ms</STRONG> (Thumb, 154 bytes, Stack size 8 bytes, task_loop.o(i.Task_50ms))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Task_50ms &rArr; Display_Mecanum &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setmotor_pwm
+<BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setmotor_pwm
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
-<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Track_Read
-<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Color
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SWITCH
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Blink
 <LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Scan
@@ -2536,7 +2540,7 @@ Local Symbols
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Argument_Save
 </UL>
 
-<P><STRONG><a name="[149]"></a>goToXY_control</STRONG> (Thumb, 386 bytes, Stack size 56 bytes, control.o(i.goToXY_control))
+<P><STRONG><a name="[149]"></a>goToXY_control</STRONG> (Thumb, 460 bytes, Stack size 56 bytes, control.o(i.goToXY_control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = goToXY_control &rArr; __hardfp_sqrt &rArr; _dsqrt &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
@@ -2547,16 +2551,16 @@ Local Symbols
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTO_C_Set
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTO_B_Set
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTO_A_Set
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Kinematic_Analysis
+<LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Kinematic_Analysis
 <LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sqrt
 </UL>
-<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
-<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToProcessing_control
-<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToFinish_control
-<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToDeparture_control
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;back_control
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToProcessing_control
-<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToDeparture_control
+<BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToProcessing_control
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToFinish_control
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToDeparture_control
+<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;back_control
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToProcessing_control
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToDeparture_control
 </UL>
 
 <P><STRONG><a name="[14e]"></a>grab_hand</STRONG> (Thumb, 266 bytes, Stack size 16 bytes, control.o(i.grab_hand))
@@ -2565,8 +2569,8 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setmotor_pwm
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grabFromProcessing_control
-<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grabFromDeparture_control
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grabFromProcessing_control
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grabFromDeparture_control
 </UL>
 
 <P><STRONG><a name="[14f]"></a>move_hand</STRONG> (Thumb, 194 bytes, Stack size 16 bytes, control.o(i.move_hand))
@@ -2575,14 +2579,14 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setmotor_pwm
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
+<BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
 </UL>
 
 <P><STRONG><a name="[14b]"></a>order_set</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, control.o(i.order_set))
-<BR><BR>[Called By]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grabFromDeparture_control
-<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToProcessing_control
-<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToFinish_control
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToProcessing_control
+<BR><BR>[Called By]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grabFromDeparture_control
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToProcessing_control
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToFinish_control
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToProcessing_control
 </UL>
 
 <P><STRONG><a name="[152]"></a>place_hand</STRONG> (Thumb, 266 bytes, Stack size 16 bytes, control.o(i.place_hand))
@@ -2591,28 +2595,25 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setmotor_pwm
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;placeToProcessing_control
-<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;placeToFinish_control
+<BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;placeToProcessing_control
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;placeToFinish_control
 </UL>
 
-<P><STRONG><a name="[14a]"></a>stop_control</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, control.o(i.stop_control))
-<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = stop_control &rArr; pid_ctr_mecanum_speed &rArr; MOTO_D_Set
+<P><STRONG><a name="[14a]"></a>stop_control</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, control.o(i.stop_control))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = stop_control &rArr; MOTO_D_Set
 </UL>
-<BR>[Calls]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_setup_mecanum_speed
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_ctr_mecanum_speed
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTO_D_Set
+<BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTO_D_Set
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTO_C_Set
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTO_B_Set
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOTO_A_Set
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Kinematic_Analysis
 </UL>
-<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
-<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToProcessing_control
-<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToFinish_control
-<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToDeparture_control
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;back_control
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToProcessing_control
-<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToDeparture_control
+<BR>[Called By]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToProcessing_control
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToFinish_control
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToDeparture_control
+<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;back_control
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToProcessing_control
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToDeparture_control
 </UL>
 
 <P><STRONG><a name="[148]"></a>turn_hand</STRONG> (Thumb, 200 bytes, Stack size 16 bytes, control.o(i.turn_hand))
@@ -2621,53 +2622,53 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setmotor_pwm
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToProcessing_control
-<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToFinish_control
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;back_control
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToProcessing_control
-<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToDeparture_control
+<BR>[Called By]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToProcessing_control
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;goToFinish_control
+<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;back_control
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToProcessing_control
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;backToDeparture_control
 </UL>
 
-<P><STRONG><a name="[126]"></a>findNum</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, track.o(i.findNum))
+<P><STRONG><a name="[127]"></a>findNum</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, track.o(i.findNum))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = findNum
 </UL>
-<BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Track_Read
+<BR>[Called By]<UL><LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Track_Read
 </UL>
 
-<P><STRONG><a name="[107]"></a>SetSysClock</STRONG> (Thumb, 220 bytes, Stack size 12 bytes, system_stm32f4xx.o(i.SetSysClock))
+<P><STRONG><a name="[108]"></a>SetSysClock</STRONG> (Thumb, 220 bytes, Stack size 12 bytes, system_stm32f4xx.o(i.SetSysClock))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SetSysClock
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 
-<P><STRONG><a name="[10a]"></a>TI1_Config</STRONG> (Thumb, 58 bytes, Stack size 20 bytes, stm32f4xx_tim.o(i.TI1_Config))
+<P><STRONG><a name="[10b]"></a>TI1_Config</STRONG> (Thumb, 58 bytes, Stack size 20 bytes, stm32f4xx_tim.o(i.TI1_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = TI1_Config
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ICInit
 </UL>
 
-<P><STRONG><a name="[10c]"></a>TI2_Config</STRONG> (Thumb, 80 bytes, Stack size 20 bytes, stm32f4xx_tim.o(i.TI2_Config))
+<P><STRONG><a name="[10d]"></a>TI2_Config</STRONG> (Thumb, 80 bytes, Stack size 20 bytes, stm32f4xx_tim.o(i.TI2_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = TI2_Config
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ICInit
 </UL>
 
-<P><STRONG><a name="[10e]"></a>TI3_Config</STRONG> (Thumb, 72 bytes, Stack size 20 bytes, stm32f4xx_tim.o(i.TI3_Config))
+<P><STRONG><a name="[10f]"></a>TI3_Config</STRONG> (Thumb, 72 bytes, Stack size 20 bytes, stm32f4xx_tim.o(i.TI3_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = TI3_Config
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ICInit
 </UL>
 
-<P><STRONG><a name="[110]"></a>TI4_Config</STRONG> (Thumb, 80 bytes, Stack size 20 bytes, stm32f4xx_tim.o(i.TI4_Config))
+<P><STRONG><a name="[111]"></a>TI4_Config</STRONG> (Thumb, 80 bytes, Stack size 20 bytes, stm32f4xx_tim.o(i.TI4_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = TI4_Config
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ICInit
 </UL>
 
-<P><STRONG><a name="[108]"></a>System_Init</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, main.o(i.System_Init))
+<P><STRONG><a name="[109]"></a>System_Init</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, main.o(i.System_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = System_Init &rArr; BSP_Init &rArr; usart5_init &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Loop_Time_Clear
+<BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Loop_Time_Clear
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Cycle_Time_Init
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Init
 <LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mecanum_Param_Init

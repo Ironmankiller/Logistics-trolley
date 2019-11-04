@@ -51,6 +51,13 @@ void OpenMV_Data_Handle(vu8 * data_buf)
         if(data_buf[0]=='2'&&data_buf[1]=='3'&&data_buf[2]=='1') {Grab = gbr; Mecanum.Place_Order = clr; Mecanum.Grab = GBR;}
         if(data_buf[0]=='3'&&data_buf[1]=='1'&&data_buf[2]=='2') {Grab = brg; Mecanum.Place_Order = lrc; Mecanum.Grab = BRG;}
         if(data_buf[0]=='3'&&data_buf[1]=='2'&&data_buf[2]=='1') {Grab = bgr; Mecanum.Place_Order = lcr; Mecanum.Grab = BGR;}
+        
+//        if(data_buf[0]=='1'&&data_buf[1]=='2'&&data_buf[2]=='3') {Grab = rgb; Mecanum.Place_Order = lcr; Mecanum.Grab = RGB;}
+//        if(data_buf[0]=='1'&&data_buf[1]=='3'&&data_buf[2]=='2') {Grab = rbg; Mecanum.Place_Order = lrc; Mecanum.Grab = RBG;}
+//        if(data_buf[0]=='2'&&data_buf[1]=='1'&&data_buf[2]=='3') {Grab = grb; Mecanum.Place_Order = clr; Mecanum.Grab = GRB;}
+//        if(data_buf[0]=='2'&&data_buf[1]=='3'&&data_buf[2]=='1') {Grab = gbr; Mecanum.Place_Order = crl; Mecanum.Grab = GBR;}
+//        if(data_buf[0]=='3'&&data_buf[1]=='1'&&data_buf[2]=='2') {Grab = brg; Mecanum.Place_Order = rlc; Mecanum.Grab = BRG;}
+//        if(data_buf[0]=='3'&&data_buf[1]=='2'&&data_buf[2]=='1') {Grab = bgr; Mecanum.Place_Order = rcl; Mecanum.Grab = BGR;}
         if(Color!=0&&Grab!=0) {
             if(Color==Grab) Mecanum.Departure_Order = rcl;
             else if(Color+Grab==7) Mecanum.Departure_Order = lcr;

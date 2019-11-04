@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\NUEDC_2017.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\NUEDC_2017.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Fri Nov 01 21:18:27 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Sat Nov 02 11:22:42 2019
 <BR><P>
 <H3>Maximum Stack Usage =        348 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -888,8 +888,8 @@ Global Symbols
 <P><STRONG><a name="[3]"></a>HardFault_Handler</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.HardFault_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = HardFault_Handler &rArr; Display_Error &rArr; OLED_ShowString &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
 </UL>
-<BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Error
+<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Display_Error
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_ON
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
@@ -2007,8 +2007,8 @@ Global Symbols
 <P><STRONG><a name="[12a]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2sprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setmotor_pwm
-<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_IRQHandler
+<BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART4_IRQHandler
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setmotor_pwm
 </UL>
 
 <P><STRONG><a name="[171]"></a>__c89sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0sprintf), UNUSED)
@@ -2154,7 +2154,6 @@ Global Symbols
 <LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;move_hand
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_hand
 <LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
-<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Grab
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OpenMV_Read_Color
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
@@ -2326,7 +2325,6 @@ Global Symbols
 <LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;move_hand
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;grab_hand
 <LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scan_control
-<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_50ms
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Init
 </UL>
 
@@ -2447,12 +2445,10 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Task_Loop
 </UL>
 
-<P><STRONG><a name="[121]"></a>Task_50ms</STRONG> (Thumb, 154 bytes, Stack size 8 bytes, task_loop.o(i.Task_50ms))
+<P><STRONG><a name="[121]"></a>Task_50ms</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, task_loop.o(i.Task_50ms))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Task_50ms &rArr; Display_Mecanum &rArr; OLED_ShowNumber &rArr; OLED_ShowChar &rArr; OLED_DrawPoint
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u2_printf
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setmotor_pwm
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_SWITCH
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Blink
 <LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Scan

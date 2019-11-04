@@ -246,14 +246,8 @@ __INLINE static void Task_50ms(void)
         u2_printf("1\r\n");
         break;
     case 4:
-//        Mecanum.state = goToProcessing;
-        arm1(90);
-        delay_ms(1000);
-        arm2(25);
-        delay_ms(20);
-        arm3(25);
-        delay_ms(20);
-        arm4(45);
+        Mecanum.state = goToDeparture;
+
 //        OpenMV_Read_Color();
 //        delay_ms(20);
 //        arm4(45);
